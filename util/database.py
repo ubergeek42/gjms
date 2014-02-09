@@ -1,7 +1,7 @@
-from peewee import *
+import peewee
 
-database = SqliteDatabase("../data.db")
+database = peewee.SqliteDatabase("../data.db")
 
-class connector(Model):
+class connector(peewee.Model):
 	class Meta:
 		database = database
