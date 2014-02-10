@@ -23,6 +23,23 @@ def delete(username):
 	del_user.delete_instance()
 	print "User %s deleted." % username
 
+
+"""
+	func login:
+
+	First checks if a user with the given username
+	exists. If this is not the case, it raises a
+	NonExistentUser exception.
+
+	If it passes, it checks if the given password
+	matches the user's hashed password. If it does
+	it prints out "Logged in"
+
+	TODO:
+		- Make function set user login status.
+		- Add decorator to easily determine login status.
+
+"""
 def login(username, password):
 	try:
 		login_user = User.get(User.name == username)
