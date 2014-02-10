@@ -3,7 +3,7 @@
 
 import gjms.users
 
-fritz = gjms.users.add("Fritz", "yolo#2014", "fritz@fratz.at")
-print "%s | %s | %s " % (fritz.name, fritz.password, fritz.email)
+example = gjms.users.add("user", "password", "username@example.com")
+print "%s | %s | %s " % (example.name, example.password, example.email)
 
-gjms.users.delete("Fritz")
+gjms.users.delete("user")
