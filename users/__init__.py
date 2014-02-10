@@ -3,7 +3,7 @@
 import os, sys
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
-import gjms.util.database, gjms.util.password, peewee
+import gjms.util.database, gjms.util.password, gjms.util.exceptions, peewee
 
 class User(gjms.util.database.connector):
 	name = peewee.TextField()
@@ -22,3 +22,17 @@ def delete(username):
 	del_user = User.get(User.name == username)
 	del_user.delete_instance()
 	print "User %s deleted." % username
+
+def login(username, password):
+	try:
+		login_user = User.get(User.name == username)
+	except:
+		login_user = None
+
+	if type(login_user) is gjms.users.User:
+		if gjms.util.password.check(password, login_user.password):
+			print "Logged in!"
+		else:
+			raise gjms.util.exceptions.IncorrectPassword, "The password you provided is incorrect."
+	else:
+		raise gjms.util.exceptions.NonExistentUser, "There is no user with that username."
