@@ -23,6 +23,22 @@ def get(username):
 	else:
 		raise gjms.core.exceptions.NonExistentUser, "There is no user with that username."
 
+def update(username, passwrd, mail):
+	try:
+		user = User.get(User.name == username)
+	except:
+		user = None
+
+	if type(user) is gjms.core.users.User:
+		user.name = username
+		user.password = passwrd
+		user.email = mail
+		user.save()
+		print "%s updated." % user.name
+	else:
+		raise gjms.core.exceptions.NonExistentUser, "There is no user with that username."
+
+
 def add(username, passwrd, mail):
 	if gjms.util.email.valid(mail):
 		hashed = gjms.util.password.hash(passwrd)
@@ -44,23 +60,6 @@ def delete(username):
 	else:
 		raise gjms.core.exceptions.NonExistentUser, "There is no user with that username."
 
-
-"""
-	func login:
-
-	First checks if a user with the given username
-	exists. If this is not the case, it raises a
-	NonExistentUser exception.
-
-	If it passes, it checks if the given password
-	matches the user's hashed password. If it does
-	it prints out "Logged in"
-
-	TODO:
-		- Make function set user login status.
-		- Add decorator to easily determine login status.
-
-"""
 def login(username, password):
 	try:
 		login_user = User.get(User.name == username)
@@ -70,6 +69,7 @@ def login(username, password):
 	if type(login_user) is gjms.core.users.User:
 		if gjms.util.password.check(password, login_user.password):
 			print "Logged in!"
+			return True
 		else:
 			raise gjms.core.exceptions.IncorrectPassword, "The password you provided is incorrect."
 	else:
