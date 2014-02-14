@@ -1,6 +1,6 @@
 import peewee
 
-database = peewee.SqliteDatabase("../dtd")
+database = peewee.SqliteDatabase("../dtf")
 
 class connector(peewee.Model):
 	class Meta:

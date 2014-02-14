@@ -9,10 +9,23 @@ class Game(gjms.core.database.connector):
 	name = peewee.TextField()
 	description = peewee.TextField()
 	image = peewee.TextField()
-	platforms = playhouse.kv.KeyStore(peewee.TextField(null=True), database=gjms.core.database.database)
+	platforms = playhouse.kv.PickledKeyStore(database=gjms.core.database.database)
+	ratings = playhouse.kv.KeyStore(peewee.TextField(null=True), database=gjms.core.database.database)
 
 	def add_platform(self, name, link):
 		Game.platforms[name] = link
+
+	def add_rating(self, user, rating):
+		Game.ratings[user] = rating
+
+	def get_rating(self):
+		counter = 0
+		score = 0
+		for user, rating in Game.ratings:
+			score += float(rating)	
+			counter += 1.0
+		return float(score / counter)
+
 
 Game.create_table(fail_silently=True)
 
