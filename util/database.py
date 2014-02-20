@@ -10,6 +10,6 @@ DB = elixir.metadata
 def setup(database):
     """ Connect to database and setup all models """
     DB.bind = "sqlite:///%s" % (database)
-    DB.bind.echo = True
+    DB.bind.echo = False
 
     print "Database successfully initialized."
