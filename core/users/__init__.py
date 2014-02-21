@@ -8,7 +8,7 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
 
 def add(name, password, email):
-    """ Prefered way to add a user. Checks if the email is valid, and hashes the password """
+    """ Preferred way to add a user. Checks if the email is valid, and hashes the password """
     import gjms.util.password, gjms.util.email
 
     if gjms.util.email.validate(email):
@@ -18,7 +18,7 @@ def add(name, password, email):
         print "This e-mail is invalid."
 
 def get(id_name):
-    """ Gets a user by the given filter (either name or ID. Name is prefered.) """
+    """ Gets a user by the given filter (either name or ID. Name is preferred.) """
 
     user = User.get_by(name=str(id_name).decode("utf-8"))
     if type(user) != User:

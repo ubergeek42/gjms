@@ -3,8 +3,8 @@
 
 Securely hash and check passwords using PBKDF2.
 
-Use random salts to protect againt rainbow tables, many iterations against
-brute-force, and constant-time comparaison againt timing attacks.
+Use random salts to protect against rainbowtables, many iterations against
+brute-force, and constant-time comparison against timing attacks.
 
 Keep parameters to the algorithm together with the hash so that we can
 change the parameters and keep older hashes working.

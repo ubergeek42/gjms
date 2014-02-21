@@ -8,13 +8,13 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
 
 def add(name):
-    """ Prefered way to add a game. """
+    """ Preferred way to add a game. """
 
     game = Game(name=name)
     return game
 
 def get(id_name):
-    """ Gets a game by the given filter (either name or ID. Name is prefered.) """
+    """ Gets a game by the given filter (either name or ID. Name is preferred.) """
 
     game = Game.get_by(name=str(id_name).decode("utf-8"))
     if type(game) != Game:
