@@ -21,9 +21,9 @@ GJMS is implemented in Python. Thus, you need access to Python and pip to run it
 You can run GJMS either via CGI or proxy. It is recommended to run via proxy and<br>this is the method explained here:
 
 * Clone the repository to your web server: `git clone git://github.com/Folis/gjms.git`
-* Setup a proxy on port 5000 via .htaccess:
-<code><pre>RewriteEngine On
-RewriteRule ^(.*)$ http://127.0.0.1:5000/path/to/repo/$1 [P]</pre></code>
+* Setup a proxy on port 5000 via .htaccess:<br>
+<code>RewriteEngine On
+RewriteRule ^(.*)$ http://127.0.0.1:5000/path/to/repo/$1 [P]</code>
 This'll proxy all requests to GJMS. You may also proxy only requests from a subfolder.
 
 After you set up your proxy, go to [your-website.com/gjms-config/](#), which will guide you through a setup process to get all necessary data. After finishing the setup process you<br>
