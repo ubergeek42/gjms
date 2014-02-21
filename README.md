@@ -22,8 +22,8 @@ You can run GJMS either via CGI or proxy. It is recommended to run via proxy and
 
 * Clone the repository to your web server: `git clone git://github.com/Folis/gjms.git`
 * Setup a proxy on port 5000 via .htaccess:<br>
-<code>RewriteEngine On
-RewriteRule ^(.*)$ http://127.0.0.1:5000/path/to/repo/$1 [P]</code>
+<code>RewriteEngine On<br>
+RewriteRule ^(.*)$ http://127.0.0.1:5000/path/to/repo/$1 [P]</code><br>
 This'll proxy all requests to GJMS. You may also proxy only requests from a subfolder.
 
 After you set up your proxy, go to [your-website.com/gjms-config/](#), which will guide you through a setup process to get all necessary data. After finishing the setup process you<br>
