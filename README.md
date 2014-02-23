@@ -45,7 +45,7 @@ Contributions to GJMS are always welcome, however there are a few guidelines to 
     - The master branch should be production ready at all times.
     - develop is for all features included in the next release.
     - Adding a new feature? Start a branch: **feature/gjms-[module]-[submodule]**<br>(for gjms.core.users this would be feature/gjms-core-users.)<br>
-Also be sure to write unit tests and check against exisiting (<span style="color: #B11;">pending</span>) tests.
+Also be sure to write unit tests and check against exisiting tests (see test/test.py).
 
 #### General
 * Set up a [virtualenv](https://pypi.python.org/pypi/virtualenv) to avoid unwanted dependencies.
