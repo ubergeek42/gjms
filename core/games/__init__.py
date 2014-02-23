@@ -10,14 +10,14 @@
 
 """
 
-import os, sys, elixir, gjms.util.database
+import os, sys, elixir, gjms.util.database, gjms.util.url, gjms.core.exceptions
 from gjms.core.models import Game
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
 
 def add(name, description, image):
     """ 
-    
+
         Preferred way to add a game. 
 
         Fixes up the image link, if http:// is missing, so you don't 
@@ -30,9 +30,11 @@ def add(name, description, image):
     else:
         image_fixed = image
 
-    game = Game(name=name, description=description, image=image_fixed)
-
-    return game
+    if gjms.util.url.validate(image_fixed):
+        game = Game(name=name, description=description, image=image_fixed)
+        return game
+    else:
+        raise gjms.core.exceptions.InvalidURL("URL not valid.")
 
 def get(id_name):
     """
@@ -43,7 +45,7 @@ def get(id_name):
     if type(game) != Game:
         game = Game.get_by(id=id_name)
         if type(game) != Game:
-            print "Hmmm. This game doesn't appear to exist."
+            raise gjms.core.exceptions.NonExistentGame("Game does not exist.")
         else:
             return game
     else:

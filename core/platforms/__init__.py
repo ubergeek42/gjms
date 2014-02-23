@@ -14,7 +14,7 @@
 	Changes have to be commited manually to database.
 """
 
-import os, sys, elixir, gjms.util.database
+import os, sys, elixir, gjms.util.database, gjms.util.url, gjms.core.exceptions
 from gjms.core.models import Platform
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
@@ -32,9 +32,12 @@ def add(name, download):
     else:
         download_fixed = download
 
-    platform = Platform(name=name, download=download_fixed)
 
-    return platform
+    if gjms.util.url.validate(download_fixed):
+        platform = Platform(name=name, download=download_fixed)
+        return platform
+    else:
+        raise gjms.core.exceptions.InvalidURL("URL not valid.")
 
 def get(id_name):
     """
@@ -45,7 +48,7 @@ def get(id_name):
     if type(platform) != Platform:
         platform = Platform.get_by(id=id_name)
         if type(platform) != Platform:
-            print "Hmmm. This platform doesn't appear to exist."
+            raise gjms.core.exceptions.NonExistentPlatform("Platform does not exist.")
         else:
             return platform
     else:

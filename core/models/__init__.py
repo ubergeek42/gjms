@@ -12,7 +12,7 @@ class User(elixir.Entity):
     """
 
     name = elixir.Field(elixir.String(40), unique=True)
-    password = elixir.Field(elixir.Unicode(512))
+    password = elixir.Field(elixir.String(512))
     email = elixir.Field(elixir.String(50))
 
     games = elixir.OneToMany("Game")

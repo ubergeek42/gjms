@@ -20,7 +20,7 @@
 
 """
 
-import os, sys, elixir, gjms.util.database, gjms.util.password, gjms.util.email
+import os, sys, elixir, gjms.util.database, gjms.util.password, gjms.util.email, gjms.core.exceptions
 from gjms.core.models import User
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
@@ -34,8 +34,6 @@ def add(name, password, email):
     if gjms.util.email.validate(email):
         hashed = gjms.util.password.encrypt(password)
         return User(name=name, password=hashed, email=email)
-    else:
-        print "This e-mail is invalid."
 
 def get(id_name):
     """ 
@@ -46,7 +44,7 @@ def get(id_name):
     if type(user) != User:
         user = User.get_by(id=id_name)
         if type(user) != User:
-            print "Hmmm. This user doesn't appear to exist."
+            raise gjms.core.exceptions.NonExistentUser("User does not exist.")
         else:
             return user
     else:
@@ -60,8 +58,11 @@ def delete(id_name):
 
     if type(id_name) != User:
         user = get(id_name)
-        user.delete()
-        print "User '%s' deleted." % (user.name)
+        if type(user) != User:
+            raise gjms.core.exceptions.NonExistentUser("User does not exist.")
+        else:
+            user.delete()
+            print "User '%s' deleted." % (user.name)
     else:
         id_name.delete()
         print "User '%s' deleted." % (id_name.name)

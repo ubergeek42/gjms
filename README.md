@@ -1,4 +1,4 @@
-# [GJMS 0.3.1](http://hostagamejam.com)
+# [GJMS 0.3.2](http://hostagamejam.com)
 > Bringing game jam hosting to everyone!
 
 ## The vision
