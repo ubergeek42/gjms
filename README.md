@@ -1,4 +1,4 @@
-# [GJMS 0.3.2](http://hostagamejam.com)
+# [GJMS 0.4.0](http://hostagamejam.com)
 > Bringing game jam hosting to everyone!
 
 ![alt text](https://api.travis-ci.org/Folis/gjms.png "TravisCI build status")

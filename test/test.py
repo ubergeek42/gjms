@@ -21,6 +21,7 @@ from nose.tools import with_setup
 import gjms.core.users as users
 import gjms.core.games as games
 import gjms.core.models as models
+import gjms.core.events as events
 import gjms.core.ratings as ratings
 import gjms.core.platforms as platforms
 import gjms.core.exceptions as exceptions
@@ -270,6 +271,56 @@ def test_calculate_rating_incorrect():
 
     assert_raises(exceptions.InvalidParameter, ratings.calculate, "Flingler")
 
+def test_add_event_correct():
+    """ Test correct event adding. """
+
+    import datetime as d
+
+    starts = d.datetime(2014, 3, 17, 1)
+    ends = d.datetime(2014, 3, 21, 1)
+
+    event = events.add(starts, ends, "Spring Jam Week", "Some theme")
+    assert type(event) == models.Event
+
+def test_add_event_incorrect():
+    """ Test incorrect event adding. """
+
+    assert_raises(exceptions.InvalidValue, events.add, 3, 2, "Test Event")
+
+def test_event_get():
+    """ Test event getting """
+
+    event = events.get(1)
+    assert type(event) == models.Event
+
+def test_game_event():
+    """ Test event game adding """
+    
+    event = events.get(1)
+    game = games.get(1)
+
+    event.games.append(game)
+
+    assert game in event.games
+
+def test_participant_event():
+    """ Test event participant adding """
+    
+    event = events.get(1)
+    user = users.get(1)
+
+    event.participants.append(user)
+
+    assert user in event.participants
+
+def test_participant_event_reverse():
+    """ Test user events """
+    
+    event = events.get(1)
+    user = users.get(1)
+
+    assert event in user.participated
+
 def test_delete_game():
     """ Test game deleting. """
 
@@ -301,5 +352,13 @@ def test_delete_rating():
     rating.delete()
 
     assert_raises(exceptions.NonExistentRating, ratings.get, 1)
+
+def test_delete_event():
+    """ Test event deleting. """
+
+    event = events.get(1)
+    event.delete()
+
+    assert_raises(exceptions.NonExistentEvent, events.get, 1)
 
 

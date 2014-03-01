@@ -1,6 +1,12 @@
 #coding: utf8
 
-""" Models. Defining the data structures of GJMS """
+""" 
+
+    gjms.core.models 
+
+    All the data structures of GJMS.
+
+"""
 
 import os, sys, elixir, gjms.util.database
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
@@ -15,6 +21,7 @@ class User(elixir.Entity):
     password = elixir.Field(elixir.String(512))
     email = elixir.Field(elixir.String(50))
 
+    participated = elixir.ManyToMany("Event")
     games = elixir.OneToMany("Game")
     ratings = elixir.OneToMany("Rating")
 
@@ -34,6 +41,7 @@ class Game(elixir.Entity):
     author = elixir.ManyToOne("User")
     platforms = elixir.ManyToMany("Platform")
     ratings = elixir.ManyToMany("Rating")
+    event = elixir.ManyToOne("Event")
 
 
     def __repr__(self):
@@ -67,7 +75,29 @@ class Rating(elixir.Entity):
     def __repr__(self):
         return "<Rating %s>" % (self.value)
 
-database = gjms.util.database.setup("tdb5.db")
+class Event(elixir.Entity):
+    """
+        The Event model. Contains all information regarding an event.
+        This includes from when to when it's happening, the submitted games,
+        and which users participated. Includes the theme.
+
+        Many events can have many users and many games.
+    """
+
+    start = elixir.Field(elixir.DateTime(512))
+    end = elixir.Field(elixir.DateTime(512))
+
+    name = elixir.Field(elixir.String(512))
+    theme = elixir.Field(elixir.String(256))
+    voting = elixir.Field(elixir.Boolean())
+
+    games = elixir.OneToMany("Game")
+    participants = elixir.ManyToMany("User")
+
+    def __repr__(self):
+        return "<Event '%s' (%s - %s)>" % (self.name, self.start, self.end)
+
+database = gjms.util.database.setup("tdb7.db")
 
 elixir.setup_all()
 elixir.create_all()

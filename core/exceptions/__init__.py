@@ -27,6 +27,10 @@ class NonExistentPlatform(Exception):
     """ Platform doesn't exist. """
     pass
 
+class NonExistentEvent(Exception):
+    """ Event doesn't exist. """
+    pass
+
 
 # Invalid values.bbb
 class InvalidEmail(Exception):

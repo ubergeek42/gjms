@@ -40,7 +40,7 @@ def get(id_name):
     """
         Gets a game by the given filter (either name or ID. Name preferred.) 
     """
-
+    
     game = Game.get_by(name=str(id_name).decode("utf-8"))
     if type(game) != Game:
         game = Game.get_by(id=id_name)

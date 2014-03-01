@@ -12,4 +12,4 @@ def setup(database):
     DB.bind = "sqlite:///%s" % (database)
     DB.bind.echo = False
 
-    print "Database successfully initialized."
+    # print "Database successfully initialized."
