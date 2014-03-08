@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 # [[![GJMS](http://hostagamejam.com/media/gjms-logo.png)](http://hostagamejam.com)](http://hostagamejam.com)
 > v0.4.5 - Bringing game jam hosting to everyone!
+=======
+# [[![GJMS](http://hostagamejam.com/media/gjms-logo.png)](http://hostagamejam.com) 0.4.0](http://hostagamejam.com)
+> Bringing game jam hosting to everyone!
+>>>>>>> d0e2b12aa94f822b77b7834cc4c22a2b154e231f
 
 ![alt text](https://api.travis-ci.org/Folis/gjms.png "TravisCI build status")
 
