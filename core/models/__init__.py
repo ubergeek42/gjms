@@ -8,7 +8,7 @@
 
 """
 
-import os, sys, elixir, gjms.util.database
+import os, sys, elixir, gjms.util.database, gjms.config
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
 class User(elixir.Entity):
@@ -97,7 +97,7 @@ class Event(elixir.Entity):
     def __repr__(self):
         return "<Event '%s' (%s - %s)>" % (self.name, self.start, self.end)
 
-database = gjms.util.database.setup("tdb7.db")
+database = gjms.util.database.setup(gjms.config.database)
 
 elixir.setup_all()
 elixir.create_all()

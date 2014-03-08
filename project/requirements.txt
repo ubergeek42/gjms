@@ -4,6 +4,7 @@ Flask-WTF==0.9.4
 Jinja2==2.7.2
 MarkupSafe==0.18
 SQLAlchemy==0.7.8
+Twisted==13.2.0
 WTForms==1.0.5
 Werkzeug==0.9.4
 argparse==1.2.1
@@ -17,3 +18,4 @@ pylint==1.1.0
 simple-pbkdf2==1.0
 tornado==3.2
 wsgiref==0.1.2
+zope.interface==4.1.0
