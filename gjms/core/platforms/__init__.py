@@ -39,7 +39,6 @@ def add(name, download):
     else:
         download_fixed = download
 
-
     if gjms.util.url.validate(download_fixed):
         platform = Platform(name=name, download=download_fixed)
         return platform
@@ -72,8 +71,8 @@ def delete(id_name):
     if type(id_name) != Platform:
         platform = get(id_name)
         platform.delete()
-        print "Platform'%s' deleted." % (platform.name)
+        print "Platform'%s' deleted." % platform.name
     else:
         id_name.delete()
-        print "Platform '%s' deleted." % (id_name.name)
+        print "Platform '%s' deleted." % id_name.name
 

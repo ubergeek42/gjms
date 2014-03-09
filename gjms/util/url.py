@@ -34,4 +34,3 @@ def validate(url):
         return True
     else:
         raise gjms.core.exceptions.InvalidURL("URL not in a valid format.")
- 
