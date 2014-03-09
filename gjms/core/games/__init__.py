@@ -68,7 +68,7 @@ def delete(id_name):
     if type(id_name) != Game:
         game = get(id_name)
         game.delete()
-        print "Game '%s' deleted." % (game.name)
+        print "Game '%s' deleted." % game.name
     else:
         id_name.delete()
-        print "Game '%s' deleted." % (id_name.name)
+        print "Game '%s' deleted." % id_name.name

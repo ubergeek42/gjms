@@ -26,7 +26,7 @@ def add(value):
         Preferred way to add a rating. 
     """
 
-    if isinstance(value, (float)):
+    if isinstance(value, float):
         rating = Rating(value=value)
         return rating
     else:

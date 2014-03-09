@@ -67,7 +67,7 @@ def delete(id_name):
     if type(id_name) != Event:
         event = get(id_name)
         event.delete()
-        print "Event '%s' deleted." % (event.name)
+        print "Event '%s' deleted." % event.name
     else:
         id_name.delete()
-        print "Event '%s' deleted." % (id_name.name)
+        print "Event '%s' deleted." % id_name.name

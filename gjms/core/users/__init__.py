@@ -32,6 +32,7 @@ from gjms.core.models import User
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
+
 def login(name, pwd):
     """
         Check login credentials and return true if they are valid.
@@ -43,6 +44,7 @@ def login(name, pwd):
         return True
     else:
         return False
+
 
 def add(name, password, email):
     """
