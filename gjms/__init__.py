@@ -15,10 +15,9 @@ import string
 
 import flask
 
-# noinspection PyUnresolvedReferences
 import gjms.util.report
-# noinspection PyUnresolvedReferences
 import gjms.util
+
 from werkzeug.contrib.fixers import ProxyFix
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
