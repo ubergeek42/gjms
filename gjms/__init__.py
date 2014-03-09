@@ -10,15 +10,19 @@
 """
 
 import os
+import string
 
 import flask
+import flask.ext.login
 
+import gjms.backend
 import gjms.util.report
 import gjms.util
+
 from werkzeug.contrib.fixers import ProxyFix
 
 app = flask.Flask(__name__, static_folder="media")
-# noinspection PyUnresolvedReferences
+
 lm = flask.ext.login.LoginManager()
 lm.init_app(app)
 
