@@ -9,7 +9,7 @@ $(function() {
                 $(".gjms-menu-label").text(label);
                 $(".gjms-menu-label").animate({
                     top: "50"
-                }, 500, function() {
+                }, 250, function() {
                     in_progress = false;
                 });
             }
@@ -18,7 +18,7 @@ $(function() {
         function() {
             $(".gjms-menu-label").animate({
                 top: "0"
-            }, 500);
+            }, 250);
         }
     );
 });
