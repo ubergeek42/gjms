@@ -19,11 +19,18 @@
         elxir.session.commit()
 
 """
-import os, sys
-sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
-import flask, elixir, gjms.util.database, gjms.util.password, gjms.util.email, gjms.core.exceptions
+import os
+import sys
+
+import gjms.util.database
+import gjms.util.password
+import gjms.util.email
+import gjms.core.exceptions
 from gjms.core.models import User
+
+
+sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
 def login(name, pwd):
     """
@@ -47,6 +54,7 @@ def add(name, password, email):
         hashed = gjms.util.password.encrypt(password)
         return User(name=name, password=hashed, email=email)
 
+
 def get(id_name):
     """
         Gets a user by the given filter (either name or ID. Name is preferred.)
@@ -62,6 +70,7 @@ def get(id_name):
     else:
         return user
 
+
 def delete(id_name):
     """
         Deletes users. Supply either name, ID or a user object.
@@ -74,7 +83,7 @@ def delete(id_name):
             raise gjms.core.exceptions.NonExistentUser("User does not exist.")
         else:
             user.delete()
-            print "User '%s' deleted." % (user.name)
+            print "User '%s' deleted." % user.name
     else:
         id_name.delete()
-        print "User '%s' deleted." % (id_name.name)
+        print "User '%s' deleted." % id_name.name

@@ -2,13 +2,15 @@
 
 """
 
-	gjms.config
+    gjms.config
 
-	Contains various information about the instance of GJMS.
+    Contains various information about the instance of GJMS.
 
 """
 
-import os, sys, flask
+import os
+import sys
+
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
 version = "0.4.5"

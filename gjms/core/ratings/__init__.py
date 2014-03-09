@@ -3,15 +3,21 @@
 """ 
     gjms.core.ratings
 
-	Rating interactions. Only basic CRUD.
+    Rating interactions. Only basic CRUD.
     You can also check all games which have received a rating
     X. The rest can be done from gjms.core.models.Game.ratings
 
-	Changes have to be commited manually to database.
+    Changes have to be commited manually to database.
 """
 
-import os, sys, elixir, gjms.util.database, gjms.core.exceptions
+import os
+import sys
+
+import gjms.util.database
+import gjms.core.exceptions
 from gjms.core.models import Rating, Game
+
+
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
 
@@ -26,6 +32,7 @@ def add(value):
     else:
         raise gjms.core.exceptions.InvalidValue("Ratings have to be type float")
 
+
 def get(rid):
     """
         Gets a rating by rID. 
@@ -37,6 +44,7 @@ def get(rid):
     else:
         return rating
 
+
 def delete(rid):
     """ 
         Delete rating by rID.
@@ -46,6 +54,7 @@ def delete(rid):
     rating.delete()
 
     print "Rating deleted."
+
 
 def calculate(game):
     """

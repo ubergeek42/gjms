@@ -1,21 +1,28 @@
 #coding: utf8
 
 """ 
-	Platform interactions. Only basic CRUD.
-	Another thing that can be done with a gjms.core.models.Platform
-	object is to filter for games on that platform. There's a many-to-many
-	relationship with the gjms.core.models.Game object.
+    Platform interactions. Only basic CRUD.
+    Another thing that can be done with a gjms.core.models.Platform
+    object is to filter for games on that platform. There's a many-to-many
+    relationship with the gjms.core.models.Game object.
 
-	The rest is to be done via a gjms.core.models.Game object.
+    The rest is to be done via a gjms.core.models.Game object.
 
-	To add a platform to a game, you can basically use 
-	gjms.core.models.Game.platforms as a list.
+    To add a platform to a game, you can basically use
+    gjms.core.models.Game.platforms as a list.
 
-	Changes have to be commited manually to database.
+    Changes have to be commited manually to database.
 """
 
-import os, sys, elixir, gjms.util.database, gjms.util.url, gjms.core.exceptions
+import os
+import sys
+
+import gjms.util.database
+import gjms.util.url
+import gjms.core.exceptions
 from gjms.core.models import Platform
+
+
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
 
@@ -39,6 +46,7 @@ def add(name, download):
     else:
         raise gjms.core.exceptions.InvalidURL("URL not valid.")
 
+
 def get(id_name):
     """
         Gets a platform by the given filter (either name or ID. Name preferred.) 
@@ -53,6 +61,7 @@ def get(id_name):
             return platform
     else:
         return platform
+
 
 def delete(id_name):
     """ 

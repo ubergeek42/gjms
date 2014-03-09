@@ -8,7 +8,9 @@
 
 """
 
-import inspect, time
+import inspect
+import time
+
 
 def log(string):
     """ Log to gjms.log """
@@ -17,6 +19,7 @@ def log(string):
     gjms_log = open("gjms.log", "w")
 
     gjms_log.write("[%s] %s - %s \n" % (time.strftime("%d/%m/%Y | %H:%M:%S"), module.f_globals['__name__'], string))
+
 
 def output(string):
     """ Log into console """

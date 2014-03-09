@@ -7,25 +7,32 @@
 
 """
 
-import os, sys
+import os
+import sys
+
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
+
 
 # Non-existent objects.
 class NonExistentGame(Exception):
     """ Game doesn't exist. """
     pass
-    
+
+
 class NonExistentUser(Exception): 
     """ User doesn't exist. """
     pass
+
 
 class NonExistentRating(Exception):
     """ Rating doesn't exist. """
     pass
 
+
 class NonExistentPlatform(Exception): 
     """ Platform doesn't exist. """
     pass
+
 
 class NonExistentEvent(Exception):
     """ Event doesn't exist. """
@@ -37,13 +44,16 @@ class InvalidEmail(Exception):
     """ E-Mail doesn't match regex """
     pass
 
+
 class InvalidURL(Exception):
     """ URL doesn't match regex """
     pass
 
+
 class InvalidValue(Exception):
     """ Value is not of expected type. """
     pass
+
 
 class InvalidParameter(Exception):
     """ Object passed to function is incorrect. """

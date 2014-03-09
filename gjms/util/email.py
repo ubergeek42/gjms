@@ -2,10 +2,14 @@
 
 """ Check if a given e-mail fits the format x@y.z """
 
-import os, sys
+import os
+import sys
+
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
-import re, gjms.core.exceptions
+import re
+import gjms.core.exceptions
+
 
 def validate(email):
     """ Validate e-mail according to regex """

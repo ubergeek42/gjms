@@ -10,8 +10,16 @@
 
 """
 
-import os, sys, elixir, datetime, gjms.util.database, gjms.util.url, gjms.core.exceptions
+import os
+import sys
+import datetime
+
+import gjms.util.database
+import gjms.util.url
+import gjms.core.exceptions
 from gjms.core.models import Event
+
+
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
 
@@ -34,6 +42,7 @@ def add(start, end, name, theme="", voting=False):
     else:
         raise gjms.core.exceptions.InvalidValue("Start time must be datetime")
 
+
 def get(id_name):
     """
         Gets an event by the given filter (either name or ID. ID preferred.) 
@@ -48,6 +57,7 @@ def get(id_name):
             return event
     else:
         return event
+
 
 def delete(id_name):
     """ 
