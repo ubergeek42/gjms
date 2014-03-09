@@ -2,15 +2,25 @@
 
 """
 
-	gjms.backend
+    gjms.backend
 
-	Contains everything regarding the backend.
-	This includes the forms for management as well as templates.
+    Contains everything regarding the backend.
+    This includes the forms for management as well as templates.
 
 """
 
-import os, sys, gjms.util.report, gjms, gjms.config, gjms.core.users, flask.ext.login
+import os
+import sys
+
+import gjms.util.report
+import gjms
+import gjms.config
+import gjms.core.users
+import flask.ext.login
+
+
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
+
 
 def setup():
     """ Setup the backend roots """

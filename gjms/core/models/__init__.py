@@ -8,8 +8,17 @@
 
 """
 
-import os, sys, elixir, gjms.util.database, gjms.config
+import os
+import sys
+
+import elixir
+
+import gjms.util.database
+import gjms.config
+
+
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
+
 
 class User(elixir.Entity):
     """
@@ -37,6 +46,7 @@ class User(elixir.Entity):
     def __repr__(self):
         return "<User '%s' (%s)>" % (self.name, self.email)
 
+
 class Game(elixir.Entity):
     """
         The Game model. Contains all information about a game
@@ -52,9 +62,9 @@ class Game(elixir.Entity):
     ratings = elixir.ManyToMany("Rating")
     event = elixir.ManyToOne("Event")
 
-
     def __repr__(self):
         return "<Game '%s' by %s>" % (self.name, self.author.name)
+
 
 class Platform(elixir.Entity):
     """
@@ -70,11 +80,12 @@ class Platform(elixir.Entity):
     def __repr__(self):
         return "<Platform '%s' (%s)>" % (self.name, self.download)
 
+
 class Rating(elixir.Entity):
     """
         The Rating model. Contains the a rating value.
-		This value can be applied to a game and a user.
-		Allows for checking game ratings and ratings a user has given.
+        This value can be applied to a game and a user.
+        Allows for checking game ratings and ratings a user has given.
     """
 
     value = elixir.Field(elixir.Float(4))
@@ -82,7 +93,8 @@ class Rating(elixir.Entity):
     user = elixir.ManyToOne("User")
 
     def __repr__(self):
-        return "<Rating %s>" % (self.value)
+        return "<Rating %s>" % self.value
+
 
 class Event(elixir.Entity):
     """

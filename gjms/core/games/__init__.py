@@ -10,8 +10,15 @@
 
 """
 
-import os, sys, elixir, gjms.util.database, gjms.util.url, gjms.core.exceptions
+import os
+import sys
+
+import gjms.util.database
+import gjms.util.url
+import gjms.core.exceptions
 from gjms.core.models import Game
+
+
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
 
@@ -36,6 +43,7 @@ def add(name, description, image):
     else:
         raise gjms.core.exceptions.InvalidURL("URL not valid.")
 
+
 def get(id_name):
     """
         Gets a game by the given filter (either name or ID. Name preferred.) 
@@ -50,6 +58,7 @@ def get(id_name):
             return game
     else:
         return game
+
 
 def delete(id_name):
     """ 

@@ -10,7 +10,9 @@
 
 """
 
-import os, sys
+import os
+import sys
+
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
 #Import nose-specific tools.
@@ -31,6 +33,7 @@ import gjms.util.url as url
 import gjms.util.email as email
 import gjms.util.password as password
 
+
 def setup():
     """ Turn off harmless SQLAlchemy warnings. """
 
@@ -40,6 +43,7 @@ def setup():
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", category=sa_exc.SAWarning)
 
+
 def teardown():
     """ Provided for nosetests. No use. """
     pass
@@ -48,11 +52,13 @@ def teardown():
 ## START TESTING:
 ##
 
+
 @with_setup(setup, teardown)
 def test_email_parsing_pass():
     """ Test if correct email passes parsing. """
     
     assert True == email.validate("user@example.com")
+
 
 @with_setup(setup, teardown)
 def test_email_parsing_fail():
@@ -61,6 +67,7 @@ def test_email_parsing_fail():
     assert_raises(exceptions.InvalidEmail, email.validate, "userexample.com")
     assert_raises(exceptions.InvalidEmail, email.validate, "user@examplecom")
     assert_raises(exceptions.InvalidEmail, email.validate, "userexamplecom")
+
 
 @with_setup(setup, teardown)
 def test_url_parsing_pass():
@@ -71,6 +78,7 @@ def test_url_parsing_pass():
     assert True == url.validate("http://www.example.com")
     assert True == url.validate("http://www.example.com/")
 
+
 @with_setup(setup, teardown)
 def test_url_parsing_fail():
     """ Test if wrong URL fails parsing. """
@@ -78,6 +86,7 @@ def test_url_parsing_fail():
     assert_raises(exceptions.InvalidURL, url.validate, "example.com")
     assert_raises(exceptions.InvalidURL, url.validate, "examplecom")
     assert_raises(exceptions.InvalidURL, url.validate, "example;com")
+
 
 @with_setup(setup, teardown)
 def test_password_hashing():
@@ -88,6 +97,7 @@ def test_password_hashing():
 
     assert pwd != hashed_pwd
 
+
 @with_setup(setup, teardown)
 def test_password_validation():
     """ Test if password validation works. """
@@ -97,12 +107,14 @@ def test_password_validation():
 
     assert True == password.validate(pwd, hashed_pwd)
 
+
 @with_setup(setup, teardown)
 def test_user_add_right():
     """ Test correct way of adding a user. """
 
     user = users.add("user", "password", "user@example.com")
     assert type(user) == models.User
+
 
 @with_setup(setup, teardown)
 def test_user_add_wrong():
@@ -111,6 +123,7 @@ def test_user_add_wrong():
     assert_raises(exceptions.InvalidEmail, users.add, "user2", "password", "userexample.com")
     assert_raises(exceptions.InvalidEmail, users.add, "user2", "password", "user@examplecom")
     assert_raises(exceptions.InvalidEmail, users.add, "user2", "password", "userexamplecom")
+
 
 @with_setup(setup, teardown)
 def test_user_get():
@@ -121,10 +134,12 @@ def test_user_get():
 
     assert type(user) == models.User
 
+
 def test_user_get_incorrect():
     """ Test incorrect getting of userss. """
 
     assert_raises(exceptions.NonExistentUser, users.get, 200)
+
 
 @with_setup(setup, teardown)
 def test_user_update():
@@ -135,6 +150,7 @@ def test_user_update():
 
     assert user.name == "test_user"
 
+
 def test_game_add():
     """ Test game adding. """
 
@@ -144,16 +160,19 @@ def test_game_add():
     assert type(game) == models.Game
     assert type(game2) == models.Game
 
+
 def test_game_get_correct():
     """ Test game getting. """
 
     game = games.get("Flingler")
     assert type(game) == models.Game
 
+
 def test_game_get_incorrect():
     """ Test incorrect game getting """
 
     assert_raises(exceptions.NonExistentGame, games.get, 200)
+
 
 def test_user_game_relation_user():
     """ Test user-game relationship from a user viewpoint. """
@@ -168,12 +187,14 @@ def test_user_game_relation_user():
     assert game in user.games
     assert game2 in user.games
 
+
 def test_user_game_relation_game():
     """ Test user-game relationship from a game viewpoint. """
 
     game = games.get("Flingler")
 
     assert game.author.name == "test_user"
+
 
 def test_platform_add():
     """ Test platform adding. """
@@ -184,6 +205,7 @@ def test_platform_add():
     assert type(windows) == models.Platform
     assert type(android) == models.Platform
 
+
 def test_platform_get():
     """ Test platform getting. """
 
@@ -191,10 +213,12 @@ def test_platform_get():
 
     assert type(platform) == models.Platform
 
+
 def test_platform_get_incorrect():
     """ Test incorrect getting of platforms. """
 
     assert_raises(exceptions.NonExistentPlatform, platforms.get, 200)
+
 
 def test_plat_game_relation_game():
     """ Test platform-game relationship from a game viewpoint. """
@@ -209,6 +233,7 @@ def test_plat_game_relation_game():
     assert platform in game.platforms
     assert platform2 in game.platforms
 
+
 def test_plat_game_relation_plat():
     """ Test platform-game relationship from a platform viewpoint. """
 
@@ -216,6 +241,7 @@ def test_plat_game_relation_plat():
     game = games.get("Flingler")
 
     assert game in platform.games
+
 
 def test_add_rating_correct():
     """ Test rating adding correctly. """
@@ -226,10 +252,12 @@ def test_add_rating_correct():
 
     assert type(rating) == models.Rating
 
+
 def test_add_rating_incorrect():
     """ Test rating adding incorrectly. """
 
     assert_raises(exceptions.InvalidValue, ratings.add, 4)
+
 
 def test_rating_get_correct():
     """ Test correct getting of ratings. """
@@ -237,10 +265,12 @@ def test_rating_get_correct():
     rating = ratings.get(1)
     assert type(rating) == models.Rating
 
+
 def test_rating_get_incorrect():
     """ Test incorrect getting of ratings. """
 
     assert_raises(exceptions.NonExistentRating, ratings.get, 200)
+
 
 def test_game_add_rating():
     """ Test adding ratings to a game. """
@@ -258,6 +288,7 @@ def test_game_add_rating():
     assert rating in game.ratings
     assert rating3 in game.ratings
 
+
 def test_calculate_rating_correct():
     """ Test if rating is calculated correctly. """
 
@@ -266,10 +297,12 @@ def test_calculate_rating_correct():
 
     assert 3.0 == rating
 
+
 def test_calculate_rating_incorrect():
     """ Test if rating calculation fails when not passing a game object. """
 
     assert_raises(exceptions.InvalidParameter, ratings.calculate, "Flingler")
+
 
 def test_add_event_correct():
     """ Test correct event adding. """
@@ -282,16 +315,19 @@ def test_add_event_correct():
     event = events.add(starts, ends, "Spring Jam Week", "Some theme")
     assert type(event) == models.Event
 
+
 def test_add_event_incorrect():
     """ Test incorrect event adding. """
 
     assert_raises(exceptions.InvalidValue, events.add, 3, 2, "Test Event")
+
 
 def test_event_get():
     """ Test event getting """
 
     event = events.get(1)
     assert type(event) == models.Event
+
 
 def test_game_event():
     """ Test event game adding """
@@ -303,6 +339,7 @@ def test_game_event():
 
     assert game in event.games
 
+
 def test_participant_event():
     """ Test event participant adding """
     
@@ -313,6 +350,7 @@ def test_participant_event():
 
     assert user in event.participants
 
+
 def test_participant_event_reverse():
     """ Test user events """
     
@@ -320,6 +358,7 @@ def test_participant_event_reverse():
     user = users.get(1)
 
     assert event in user.participated
+
 
 def test_delete_game():
     """ Test game deleting. """
@@ -329,6 +368,7 @@ def test_delete_game():
 
     assert_raises(exceptions.NonExistentGame, games.get, "Flingler")
 
+
 def test_delete_user():
     """ Test user deleting. """
 
@@ -336,6 +376,7 @@ def test_delete_user():
     user.delete()
 
     assert_raises(exceptions.NonExistentUser, users.get, "test_user")
+
 
 def test_delete_platform():
     """ Test platform deleting. """
@@ -345,6 +386,7 @@ def test_delete_platform():
 
     assert_raises(exceptions.NonExistentPlatform, platforms.get, "Windows")
 
+
 def test_delete_rating():
     """ Test rating deleting. """
 
@@ -352,6 +394,7 @@ def test_delete_rating():
     rating.delete()
 
     assert_raises(exceptions.NonExistentRating, ratings.get, 1)
+
 
 def test_delete_event():
     """ Test event deleting. """

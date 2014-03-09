@@ -4,16 +4,24 @@
 """ A module for utilities, which includes password hashing and checking,
 database connections and e-mail validation. """
 
-import os, sys
+import os
+import sys
+
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
+
+# noinspection PyBroadException
 def terminal_size():
     """ Get the size of the terminal in which GJMS runs. """
+    env = os.environ
+
+    # noinspection PyPep8Naming,PyShadowingNames,PyUnresolvedReferences,PyBroadException
     def ioctl_GWINSZ(fd):
         try:
-            import fcntl, termios, struct
-            cr = struct.unpack('hh', fcntl.ioctl(fd, termios.TIOCGWINSZ,
-        '1234'))
+            import fcntl
+            import termios
+            import struct
+            cr = struct.unpack('hh', fcntl.ioctl(fd, termios.TIOCGWINSZ, '1234'))
         except:
             return None
         return cr
@@ -22,7 +30,7 @@ def terminal_size():
         try:
             fd = os.open(os.ctermid(), os.O_RDONLY)
             cr = ioctl_GWINSZ(fd)
-            os.close(fd)
+            fd.close()
         except:
             pass
     if not cr:
