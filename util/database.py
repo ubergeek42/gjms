@@ -9,7 +9,7 @@ gjms_database = elixir.metadata
 
 def setup(database):
     """ Connect to database and setup all models """
-    gjms_database.bind = "sqlite:///%s" % (database)
+    gjms_database.bind = "%s" % (database)
     gjms_database.bind.echo = False
 
     gjms.util.report.output("Database (%s) initialized." % (database))

@@ -1,8 +1,8 @@
 #coding: utf8
 
-""" 
+"""
 
-    gjms.core.models 
+    gjms.core.models
 
     All the data structures of GJMS.
 
@@ -12,7 +12,7 @@ import os, sys, elixir, gjms.util.database, gjms.config
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
 class User(elixir.Entity):
-    """ 
+    """
         The User model. Contains all information about a user
         and allows querying. One user can have many games
     """
@@ -25,11 +25,20 @@ class User(elixir.Entity):
     games = elixir.OneToMany("Game")
     ratings = elixir.OneToMany("Rating")
 
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def get_id(self):
+        return self.id
+
     def __repr__(self):
         return "<User '%s' (%s)>" % (self.name, self.email)
 
 class Game(elixir.Entity):
-    """ 
+    """
         The Game model. Contains all information about a game
         and allows querying. Many games can have one user.
     """
@@ -48,7 +57,7 @@ class Game(elixir.Entity):
         return "<Game '%s' by %s>" % (self.name, self.author.name)
 
 class Platform(elixir.Entity):
-    """ 
+    """
         The Platform model. Contains the platform name and a download link.
         Allows for querying the platforms of a game, and all games of a
         platform. Many games can have many platforms.
@@ -62,7 +71,7 @@ class Platform(elixir.Entity):
         return "<Platform '%s' (%s)>" % (self.name, self.download)
 
 class Rating(elixir.Entity):
-    """ 
+    """
         The Rating model. Contains the a rating value.
 		This value can be applied to a game and a user.
 		Allows for checking game ratings and ratings a user has given.

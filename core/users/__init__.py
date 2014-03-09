@@ -1,6 +1,6 @@
 #coding: utf8
 
-""" 
+"""
     User model interactions. Add, delete, edit, and interact with users.
 
     To update a user, grab the corresponding user object (see get() function),
@@ -19,15 +19,27 @@
         elxir.session.commit()
 
 """
-
-import os, sys, elixir, gjms.util.database, gjms.util.password, gjms.util.email, gjms.core.exceptions
-from gjms.core.models import User
+import os, sys
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
+import flask, elixir, gjms.util.database, gjms.util.password, gjms.util.email, gjms.core.exceptions
+from gjms.core.models import User
+
+def login(name, pwd):
+    """
+        Check login credentials and return true if they are valid.
+        Used for decorator @login_required;
+    """
+
+    user = get(name)
+    if gjms.util.password.validate(pwd, user.password):
+        return True
+    else:
+        return False
 
 def add(name, password, email):
-    """ 
-        Preferred way to add a user. Checks if the email is valid, and hashes 
+    """
+        Preferred way to add a user. Checks if the email is valid, and hashes
         the password the user provides.
     """
 
@@ -36,8 +48,8 @@ def add(name, password, email):
         return User(name=name, password=hashed, email=email)
 
 def get(id_name):
-    """ 
-        Gets a user by the given filter (either name or ID. Name is preferred.) 
+    """
+        Gets a user by the given filter (either name or ID. Name is preferred.)
     """
 
     user = User.get_by(name=str(id_name).decode("utf-8"))
@@ -51,8 +63,8 @@ def get(id_name):
         return user
 
 def delete(id_name):
-    """ 
-        Deletes users. Supply either name, ID or a user object. 
+    """
+        Deletes users. Supply either name, ID or a user object.
         (Name is preferred.)
     """
 

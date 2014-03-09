@@ -15,11 +15,11 @@ def log(string):
 
     module = inspect.currentframe().f_back
     gjms_log = open("gjms.log", "w")
-    
-    gjms_log.write("[%s] %s - %s \n" % (time.strftime("%H:%M:%S"), module.f_globals['__name__'], string))
+
+    gjms_log.write("[%s] %s - %s \n" % (time.strftime("%d/%m/%Y | %H:%M:%S"), module.f_globals['__name__'], string))
 
 def output(string):
     """ Log into console """
 
     module = inspect.currentframe().f_back
-    print "[%s] %s - %s" % (time.strftime("%H:%M:%S"), module.f_globals['__name__'], string)
+    print "[%s] %s - %s" % (time.strftime("%d/%m/%Y | %H:%M:%S"), module.f_globals['__name__'], string)
