@@ -16,6 +16,7 @@ import flask
 import flask.ext.login
 
 import gjms.backend
+import gjms.backend.forms
 import gjms.util.report
 import gjms.util
 
@@ -26,10 +27,11 @@ app = flask.Flask(__name__, static_folder="media")
 lm = flask.ext.login.LoginManager()
 lm.init_app(app)
 
-
 @lm.user_loader
 def load_user(userid):
+    """ Grab the user for the login manager. """
     return gjms.core.users.User.get(userid)
+
 
 gjms.backend.setup()
 
