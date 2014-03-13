@@ -34,7 +34,7 @@ import gjms.util.email as email
 import gjms.util.password as password
 
 
-def setup():
+def init():
     """ Turn off harmless SQLAlchemy warnings. """
 
     import warnings
@@ -53,14 +53,14 @@ def teardown():
 ##
 
 
-@with_setup(setup, teardown)
+@with_setup(init, teardown)
 def test_email_parsing_pass():
     """ Test if correct email passes parsing. """
-    
+
     assert True == email.validate("user@example.com")
 
 
-@with_setup(setup, teardown)
+@with_setup(init, teardown)
 def test_email_parsing_fail():
     """ Test if wrong email fails parsing. """
 
@@ -69,17 +69,17 @@ def test_email_parsing_fail():
     assert_raises(exceptions.InvalidEmail, email.validate, "userexamplecom")
 
 
-@with_setup(setup, teardown)
+@with_setup(init, teardown)
 def test_url_parsing_pass():
     """ Test if correct URL passes parsing. """
-    
+
     assert True == url.validate("http://example.com")
     assert True == url.validate("http://example.com/")
     assert True == url.validate("http://www.example.com")
     assert True == url.validate("http://www.example.com/")
 
 
-@with_setup(setup, teardown)
+@with_setup(init, teardown)
 def test_url_parsing_fail():
     """ Test if wrong URL fails parsing. """
 
@@ -88,7 +88,7 @@ def test_url_parsing_fail():
     assert_raises(exceptions.InvalidURL, url.validate, "example;com")
 
 
-@with_setup(setup, teardown)
+@with_setup(init, teardown)
 def test_password_hashing():
     """ Test if password is being hashed. """
 
@@ -98,7 +98,7 @@ def test_password_hashing():
     assert pwd != hashed_pwd
 
 
-@with_setup(setup, teardown)
+@with_setup(init, teardown)
 def test_password_validation():
     """ Test if password validation works. """
 
@@ -108,7 +108,7 @@ def test_password_validation():
     assert True == password.validate(pwd, hashed_pwd)
 
 
-@with_setup(setup, teardown)
+@with_setup(init, teardown)
 def test_user_add_right():
     """ Test correct way of adding a user. """
 
@@ -116,7 +116,7 @@ def test_user_add_right():
     assert type(user) == models.User
 
 
-@with_setup(setup, teardown)
+@with_setup(init, teardown)
 def test_user_add_wrong():
     """ Test wrong way of adding a user. """
 
@@ -125,7 +125,7 @@ def test_user_add_wrong():
     assert_raises(exceptions.InvalidEmail, users.add, "user2", "password", "userexamplecom")
 
 
-@with_setup(setup, teardown)
+@with_setup(init, teardown)
 def test_user_get():
     """ Test user getting. """
 
@@ -141,7 +141,7 @@ def test_user_get_incorrect():
     assert_raises(exceptions.NonExistentUser, users.get, 200)
 
 
-@with_setup(setup, teardown)
+@with_setup(init, teardown)
 def test_user_update():
     """ Test user updating. """
 
@@ -183,7 +183,7 @@ def test_user_game_relation_user():
 
     user.games.append(game)
     user.games.append(game2)
-    
+
     assert game in user.games
     assert game2 in user.games
 
@@ -331,7 +331,7 @@ def test_event_get():
 
 def test_game_event():
     """ Test event game adding """
-    
+
     event = events.get(1)
     game = games.get(1)
 
@@ -342,7 +342,7 @@ def test_game_event():
 
 def test_participant_event():
     """ Test event participant adding """
-    
+
     event = events.get(1)
     user = users.get(1)
 
@@ -353,7 +353,7 @@ def test_participant_event():
 
 def test_participant_event_reverse():
     """ Test user events """
-    
+
     event = events.get(1)
     user = users.get(1)
 

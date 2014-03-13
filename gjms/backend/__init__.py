@@ -13,46 +13,58 @@ import os
 import sys
 
 import gjms.util.report
-import gjms
 import gjms.config
 import gjms.core.users
 import gjms.core.exceptions
 import gjms.backend.forms
-import flask.ext.login
 
+from flask.ext.login import login_required
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
+import flask
+import flask.ext.login
+from werkzeug.contrib.fixers import ProxyFix
 
-def setup():
-    """ Setup the backend routes """
+app = flask.Flask(__name__, static_folder="media")
+app.secret_key = os.urandom(24)
+app.wsgi_app = ProxyFix(app.wsgi_app)
+app.debug = True
 
-    @gjms.app.route("/", methods=["GET", "POST"])
-    @flask.ext.login.login_required
-    def root():
-        """ Setup root """
+lm = flask.ext.login.LoginManager()
+lm.init_app(app)
 
-        config_form = gjms.backend.forms.gjms_config()
+@lm.user_loader
+def load_user(userid):
+    """ Grab the user for the login manager. """
+    return gjms.core.users.User.get(userid)
 
-        return flask.render_template("backend-base.html", config=gjms.config, config_form=config_form)
-    gjms.util.report.output("Setup route /")
+@app.route("/")
+@login_required
+def gjms_main():
+    """ Setup root """
 
-    @gjms.app.route("/login/<name>/<pwd>")
-    def login(name, pwd):
-        try:
-            user = gjms.core.users.get(name)
-            if gjms.core.users.login(name, pwd):
-                flask.ext.login.login_user(user)
-                return "YEP."
-            else:
-                return "NOPE."
-        except gjms.core.exceptions.NonExistentUser:
-            return "User does not exist. Sorry."
+    config_form = gjms.backend.forms.gjms_config()
 
-    gjms.util.report.output("Setup route /login/<name>/<pwd>")
+    return flask.render_template("backend-base.html", config=gjms.config, config_form=config_form)
+gjms.util.report.output("Setup route /")
 
-    @gjms.app.route("/gjms-config/")
-    def gjms_config():
-        """ Setup config """
-        return "Config"
-    gjms.util.report.output("Setup route /gjms-config/")
+@app.route("/login/<name>/<pwd>")
+def gjms_login(name, pwd):
+    try:
+        user = gjms.core.users.get(name)
+        if gjms.core.users.login(name, pwd):
+            flask.ext.login.login_user(user)
+            return "YEP."
+        else:
+            return "NOPE."
+    except gjms.core.exceptions.NonExistentUser:
+        return "User does not exist. Sorry."
+
+gjms.util.report.output("Setup route /login/<name>/<pwd>")
+
+@app.route("/gjms-config/")
+def gjms_config():
+    """ Setup config """
+    return "Config"
+gjms.util.report.output("Setup route /gjms-config/")

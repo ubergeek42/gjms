@@ -10,35 +10,17 @@
 """
 
 import os
+import sys
 import string
 
-import flask
-import flask.ext.login
-
-import gjms.backend
-import gjms.backend.forms
-import gjms.util.report
 import gjms.util
+import gjms.util.report
+import gjms.core.users
+import gjms.backend
 
-from werkzeug.contrib.fixers import ProxyFix
+sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
-app = flask.Flask(__name__, static_folder="media")
-
-lm = flask.ext.login.LoginManager()
-lm.init_app(app)
-
-@lm.user_loader
-def load_user(userid):
-    """ Grab the user for the login manager. """
-    return gjms.core.users.User.get(userid)
-
-
-gjms.backend.setup()
-
-app.secret_key = os.urandom(24)
-app.wsgi_app = ProxyFix(app.wsgi_app)
-app.debug = True
-
+start = gjms.backend.app
 w, h = gjms.util.terminal_size()
 
 print ""
@@ -55,3 +37,4 @@ print string.center("Visit http://yoursite.com/gjms-config/ to get started", w)
 print string.center("with the setup process of your game jam!", w)
 print string.center("Enjoy!\n", w)
 print string.center("________ Web server output below here ________\n", w)
+
