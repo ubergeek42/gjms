@@ -1,0 +1,11 @@
+{% macro gjms_form(form) -%}
+    <ul class="gjms-form">
+    {% for field in form %}
+        <li>
+            <span class="gjms-cell">{{ field.label|e }}</span>
+            <span class="gjms-cell">{{ field }}</span>
+            {% if field.flags.required %}<span class="gjms-cell gjms-required">(required)</span>{% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{%- endmacro %}

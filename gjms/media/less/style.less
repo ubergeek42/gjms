@@ -11,12 +11,17 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
  *      afterwards, though.
  */
 
-@gjms-grey:  #333;
-@gjms-light: #DDD;
-@gjms-white: #FFF;
+@gjms-grey:     #333;
+@gjms-light:    #DDD;
+@gjms-medium:   #777;
+@gjms-white:    #FFF;
 @gjms-blue:  #0070BA;
 
 body { background-color: @gjms-white; }
+h1, h2, h3 { font-family: Oswald; color: #333; }
+h1 { font-size: 2.55rem; .fa { font-size: 2.75rem; }}
+h2 { font-size: 2.25rem; .fa { font-size: 2.50rem; }}
+h3 { font-size: 2.00rem; .fa { font-size: 2.25rem; }}
 
 footer {
     position: absolute;
@@ -31,9 +36,55 @@ footer {
 
         text-align: right;
         font: 85% Open Sans;
-        color: #777;
+        color: @gjms-medium;
     }
 
+}
+
+.gjms-config .config {
+    background-color: @gjms-blue;
+    border-bottom: 1px dotted @gjms-white;
+    color: @gjms-white;
+    cursor: pointer;
+
+    .fa { color: @gjms-white; }
+}
+
+.gjms-content {
+    margin-left: 50px;
+    padding: 50px;
+
+    width: 100%;
+
+    @media (min-width: 1024px) {
+        width: 70%;
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.gjms-form {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    label[for="csrf_token"] {
+        display: none;
+    }
+}
+
+.gjms-cell {
+    display: table-cell;
+    width: 150px;
+    margin: 0;
+    padding: 0;
+
+    font: 100% Open Sans;
+}
+
+.gjms-required {
+    color: @gjms-medium;
+    padding-left: 0.75em;
 }
 
 .gjms-offcanvas-nav {
@@ -114,6 +165,8 @@ footer {
     margin-left: -2px;
     margin-top: 50px;
 
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
     transform: rotate(-90deg);
 
     text-transform: uppercase;

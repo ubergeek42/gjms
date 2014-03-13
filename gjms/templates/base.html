@@ -38,19 +38,23 @@
     <!-- Other -->
     <title>{% block title %}{% endblock %} - Game Jam Management System</title>
 </head>
-    <body>
-        <div class="gjms-offcanvas-nav">
+    <body class="{% block site_class %}{% endblock %}">
+        <nav class="gjms-offcanvas-nav">
             <ul>
-                <li><i class="fa fa-users"></i> Users</li>
-                <li><i class="fa fa-flag"></i> Events</li>
-                <li><i class="fa fa-cogs"></i> Config</li>
+                <li class="users"><i class="fa fa-users"></i>Users</li>
+                <li class="events"><i class="fa fa-flag"></i>Events</li>
+                <li class="config"><i class="fa fa-cogs"></i>Configure</li>
             </ul>
-        </div>
+        </nav>
 
         <aside class="gjms-offcanvas-bar">
             <p class="gjms-menu-label">Menu</p>
             <i class="fa fa-angle-right gjms-offcanvas-trigger"></i>
         </aside>
+
+        <section class="gjms-content">
+            {% block gjms_content %}{% endblock %}
+        </section>
 
         <footer>
             <p class="gjms-version">GJMS v{{ config.version }}</p>

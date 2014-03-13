@@ -135,6 +135,30 @@ table {
 body {
   background-color: #ffffff;
 }
+h1,
+h2,
+h3 {
+  font-family: Oswald;
+  color: #333;
+}
+h1 {
+  font-size: 2.55rem;
+}
+h1 .fa {
+  font-size: 2.75rem;
+}
+h2 {
+  font-size: 2.25rem;
+}
+h2 .fa {
+  font-size: 2.50rem;
+}
+h3 {
+  font-size: 2.00rem;
+}
+h3 .fa {
+  font-size: 2.25rem;
+}
 footer {
   position: absolute;
   left: 0;
@@ -146,7 +170,46 @@ footer .gjms-version {
   margin-right: 15px;
   text-align: right;
   font: 85% Open Sans;
-  color: #777;
+  color: #777777;
+}
+.gjms-config .config {
+  background-color: #0070ba;
+  border-bottom: 1px dotted #ffffff;
+  color: #ffffff;
+  cursor: pointer;
+}
+.gjms-config .config .fa {
+  color: #ffffff;
+}
+.gjms-content {
+  margin-left: 50px;
+  padding: 50px;
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  .gjms-content {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.gjms-form {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.gjms-form label[for="csrf_token"] {
+  display: none;
+}
+.gjms-cell {
+  display: table-cell;
+  width: 150px;
+  margin: 0;
+  padding: 0;
+  font: 100% Open Sans;
+}
+.gjms-required {
+  color: #777777;
+  padding-left: 0.75em;
 }
 .gjms-offcanvas-nav {
   position: fixed;
@@ -209,6 +272,8 @@ footer .gjms-version {
 .gjms-menu-label {
   margin-left: -2px;
   margin-top: 50px;
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
   text-transform: uppercase;
   font: 24px Open Sans;

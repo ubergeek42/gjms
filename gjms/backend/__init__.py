@@ -26,7 +26,7 @@ import flask
 import flask.ext.login
 from werkzeug.contrib.fixers import ProxyFix
 
-app = flask.Flask(__name__, static_folder="media")
+app = flask.Flask(__name__, static_folder="../media", template_folder="../templates")
 app.secret_key = os.urandom(24)
 app.wsgi_app = ProxyFix(app.wsgi_app)
 app.debug = True
@@ -40,17 +40,14 @@ def load_user(userid):
     return gjms.core.users.User.get(userid)
 
 @app.route("/")
-@login_required
+#@login_required
 def gjms_main():
     """ Setup root """
-
-    config_form = gjms.backend.forms.gjms_config()
-
-    return flask.render_template("backend-base.html", config=gjms.config, config_form=config_form)
 gjms.util.report.output("Setup route /")
 
 @app.route("/login/<name>/<pwd>")
 def gjms_login(name, pwd):
+    """ Test login function. """
     try:
         user = gjms.core.users.get(name)
         if gjms.core.users.login(name, pwd):
@@ -63,8 +60,11 @@ def gjms_login(name, pwd):
 
 gjms.util.report.output("Setup route /login/<name>/<pwd>")
 
-@app.route("/gjms-config/")
+@app.route("/gjms/config/")
 def gjms_config():
-    """ Setup config """
-    return "Config"
-gjms.util.report.output("Setup route /gjms-config/")
+    """ Setup backend config """
+    config_form = gjms.backend.forms.config()
+    return flask.render_template("backend-config.html", config=gjms.config, form=config_form)
+
+gjms.util.report.output("Setup route /gjms/config/")
+

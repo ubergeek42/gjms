@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% from "forms.html" import gjms_form %}
+
+
+
+{% block title %}Configure{% endblock %}
+{% block site_class %}gjms-config{% endblock %}
+
+{% block gjms_content %}
+    <h1><i class="fa fa-cogs"></i>Configure</h1>
+    {{ gjms_form(form) }}
+{% endblock %}

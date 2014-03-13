@@ -50,7 +50,7 @@ class event_creation(Form):
         pass
 gjms.util.report.output("Event creation form..")
 
-class gjms_config(Form):
+class config(Form):
     """ The config menu """
 
     label = wtforms.TextField(u"Label:", [wtforms.validators.required()])
