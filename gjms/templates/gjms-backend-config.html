@@ -1,0 +1,12 @@
+{% extends "gjms-backend-base.html" %}
+{% from "gjms-forms.html" import gjms_form with context %}
+
+{% block gjms_title %}Configuration{% endblock %}
+{% block gjms_site %}config{% endblock %}
+
+{% block gjms_content %}
+    <h1>Configuration</h1>
+    <h2>Setup your game jam!</h2>
+
+    {{ gjms_form(config_form) }}
+{% endblock %}

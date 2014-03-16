@@ -58,8 +58,8 @@ class config(Form):
     manager = wtforms.TextField(u"Manager:", [wtforms.validators.required()])
     m_email = wtforms.TextField(u"E-Mail:", [wtforms.validators.optional(), wtforms.validators.email()])
 
-    v_theme = wtforms.BooleanField(u"Allow theme voting:", [wtforms.validators.optional()])
-    ratings = wtforms.BooleanField(u"Allow game ratings:", [wtforms.validators.optional()])
+    v_theme = wtforms.BooleanField(u"Theme voting:", [wtforms.validators.optional()])
+    ratings = wtforms.BooleanField(u"Game ratings:", [wtforms.validators.optional()])
 
 gjms.util.report.output("GJMS configuration form..")
 

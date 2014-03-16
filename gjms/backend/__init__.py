@@ -13,11 +13,15 @@ import os
 import sys
 
 import gjms.util.report
-import gjms.config
 import gjms.core.users
+import gjms.core.events
+import gjms.core.games
+import gjms.core.platforms
+import gjms.core.ratings
 import gjms.core.exceptions
 import gjms.backend.forms
 
+from gjms.config import parser
 from flask.ext.login import login_required
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
@@ -60,11 +64,28 @@ def gjms_login(name, pwd):
 
 gjms.util.report.output("Setup route /login/<name>/<pwd>")
 
-@app.route("/gjms/config/")
+@app.route("/gjms/config/", methods=["GET", "POST"])
 def gjms_config():
     """ Setup backend config """
-    config_form = gjms.backend.forms.config()
-    return flask.render_template("backend-config.html", config=gjms.config, form=config_form)
+    form = gjms.backend.forms.config(flask.request.form)
+
+    if flask.request.method == "POST":
+        if form.validate():
+            gjms.config.parser.set("gjms", "label", form.label.data)
+            gjms.config.parser.set("gjms", "manager", form.manager.data)
+            gjms.config.parser.set("gjms", "manager_email", form.m_email.data)
+            gjms.config.parser.set("gjms", "theme_voting", form.v_theme.data)
+            gjms.config.parser.set("gjms", "game_ratings", form.ratings.data)
+
+            cfgfile = open(os.path.abspath(os.path.dirname(__file__)+"/../gjms.cfg"), "w")
+            gjms.config.parser.write(cfgfile)
+    else:
+        form.label.data = gjms.config.parser.get("gjms", "label")
+        form.manager.data = gjms.config.parser.get("gjms", "manager")
+        form.m_email.data = gjms.config.parser.get("gjms", "manager_email")
+        form.v_theme.data = gjms.config.parser.getboolean("gjms", "theme_voting")
+        form.ratings.data = gjms.config.parser.getboolean("gjms", "game_ratings")
+
+    return flask.render_template("gjms-backend-config.html", config_form=form, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
 
 gjms.util.report.output("Setup route /gjms/config/")
-

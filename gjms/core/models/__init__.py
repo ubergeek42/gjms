@@ -14,7 +14,7 @@ import sys
 import elixir
 
 import gjms.util.database
-import gjms.config
+from gjms.config import parser
 
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
@@ -118,7 +118,7 @@ class Event(elixir.Entity):
     def __repr__(self):
         return "<Event '%s' (%s - %s)>" % (self.name, self.start, self.end)
 
-database = gjms.util.database.setup(gjms.config.database)
+gjms.util.database.setup(gjms.config.parser.get("gjms", "database"))
 
 elixir.setup_all()
 elixir.create_all()

@@ -132,155 +132,149 @@ table {
  *      Change at will. Be sure to compile it to style.css
  *      afterwards, though.
  */
-body {
-  background-color: #ffffff;
-}
-h1,
-h2,
-h3 {
+h1 {
+  margin-bottom: 1rem;
   font-family: Oswald;
-  color: #333;
+  color: #444444;
+}
+h2,
+h3,
+h4,
+p,
+li {
+  font-family: Roboto;
+  color: #444444;
 }
 h1 {
-  font-size: 2.55rem;
-}
-h1 .fa {
-  font-size: 2.75rem;
+  font-size: 2.33rem;
 }
 h2 {
-  font-size: 2.25rem;
-}
-h2 .fa {
-  font-size: 2.50rem;
+  font-size: 1.55rem;
 }
 h3 {
-  font-size: 2.00rem;
+  font-size: 1.40rem;
 }
-h3 .fa {
-  font-size: 2.25rem;
+h4 {
+  font-size: 1.22rem;
 }
-footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+p,
+li {
+  font-size: 1.05rem;
 }
-footer .gjms-version {
-  margin-bottom: 10px;
-  margin-right: 15px;
-  text-align: right;
-  font: 85% Open Sans;
-  color: #777777;
+a {
+  color: inherit;
+  text-decoration: none;
 }
-.gjms-config .config {
+input[type="text"] {
+  border: 1px solid #aaaaaa;
+  padding: 5px;
+  margin-top: 5px;
+}
+input[type="submit"] {
+  margin-top: 20px;
+  padding: 5px 10px;
+  min-width: 80px;
+  border: 0;
   background-color: #0070ba;
-  border-bottom: 1px dotted #ffffff;
-  color: #ffffff;
-  cursor: pointer;
-}
-.gjms-config .config .fa {
   color: #ffffff;
 }
-.gjms-content {
-  margin-left: 50px;
-  padding: 50px;
-  width: 100%;
+#gjms-headline,
+#gjms-menu {
+  margin-top: 2rem;
 }
-@media (min-width: 1024px) {
-  .gjms-content {
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-  }
+#gjms-menu {
+  float: left;
+  margin-left: 2rem;
+}
+.gjms-menu-entry {
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  font-size: 1.5rem;
+  transition: 0.3s all;
+}
+.gjms-menu-entry .fa {
+  font-size: 100%;
+  color: #0070ba;
+  transition: 0.3s all;
+}
+.gjms-menu-entry:hover {
+  background: #0070ba;
+  color: #ffffff;
+}
+.gjms-menu-entry:hover .fa {
+  color: #ffffff;
+}
+.users .gjms-menu-entry.users {
+  background: #0070ba;
+  color: #ffffff;
+}
+.users .gjms-menu-entry.users .fa {
+  color: #ffffff;
+}
+.games .gjms-menu-entry.games {
+  background: #0070ba;
+  color: #ffffff;
+}
+.games .gjms-menu-entry.games .fa {
+  color: #ffffff;
+}
+.events .gjms-menu-entry.events {
+  background: #0070ba;
+  color: #ffffff;
+}
+.events .gjms-menu-entry.events .fa {
+  color: #ffffff;
+}
+.config .gjms-menu-entry.config {
+  background: #0070ba;
+  color: #ffffff;
+}
+.config .gjms-menu-entry.config .fa {
+  color: #ffffff;
+}
+#gjms-content {
+  width: 90%;
+  position: absolute;
+  left: 2rem;
+  top: 7rem;
+}
+#gjms-version,
+#gjms-copyright {
+  position: absolute;
+  bottom: 1.25rem;
+  font-size: 85%;
+}
+#gjms-version {
+  right: 2rem;
+}
+#gjms-copyright {
+  left: 2rem;
 }
 .gjms-form {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-.gjms-form label[for="csrf_token"] {
-  display: none;
+  width: 500px;
+  margin-top: 1.5rem;
 }
 .gjms-cell {
   display: table-cell;
-  width: 150px;
-  margin: 0;
-  padding: 0;
-  font: 100% Open Sans;
+  width: 7rem;
 }
-.gjms-required {
-  color: #777777;
-  padding-left: 0.75em;
+.gjms-cell label[for="csrf_token"] {
+  display: none;
 }
-.gjms-offcanvas-nav {
-  position: fixed;
-  top: 0;
-  left: -250px;
-  z-index: 2000;
-  width: 250px;
-  height: 100%;
-  background-color: #dddddd;
+.gjms-row.boolean {
+  display: inline;
 }
-.gjms-offcanvas-nav ul {
-  width: 100%;
-  list-style-type: none;
+.gjms-row.boolean .gjms-cell {
+  padding-top: 0.5rem;
 }
-.gjms-offcanvas-nav ul li {
-  padding-top: .25rem;
-  padding-bottom: .25rem;
+.gjms-row.boolean .gjms-cell:last-child {
+  width: 65px;
+}
+.gjms-required,
+.gjms-field-error {
+  color: red;
+}
+.gjms-field-error {
+  display: table-cell;
   padding-left: 1rem;
-  width: 100%;
-  border-bottom: 1px dotted #333333;
-  font: 150% Open Sans;
-  font-weight: 800;
-  color: #333333;
-  transition: 0.3333s all ease-in-out;
-}
-.gjms-offcanvas-nav ul li .fa {
-  transition: 0.3333s all ease-in-out;
-}
-.gjms-offcanvas-nav ul li:hover {
-  background-color: #0070ba;
-  border-bottom: 1px dotted #ffffff;
-  color: #ffffff;
-  cursor: pointer;
-}
-.gjms-offcanvas-nav ul li:hover .fa {
-  color: #ffffff;
-}
-.gjms-offcanvas-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2000;
-  width: 3rem;
-  height: 100%;
-  background-color: #333333;
-}
-.gjms-offcanvas-trigger {
-  position: absolute;
-  top: 50%;
-  margin-top: -30px;
-  padding: 15px 20px 15px 40px;
-  border-radius: 90px;
-  font-size: 200%;
-  color: #dddddd !important;
-  background-color: #333333;
-}
-.gjms-offcanvas-trigger:hover {
-  cursor: pointer;
-}
-.gjms-menu-label {
-  margin-left: -2px;
-  margin-top: 50px;
-  -webkit-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  transform: rotate(-90deg);
-  text-transform: uppercase;
-  font: 24px Open Sans;
-  font-weight: 800;
-  color: #0070ba;
-}
-.fa {
-  margin-right: 1rem;
-  color: #0070ba;
 }

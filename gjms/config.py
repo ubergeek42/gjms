@@ -4,22 +4,20 @@
 
     gjms.config
 
-    Contains various information about the instance of GJMS.
+    A parser for the gjms.cfg file.
+    Used for config updates within the scripts.
 
 """
 
 import os
 import sys
+import ConfigParser
+
+import gjms.util.report
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
-version = "0.4.5"
+parser = ConfigParser.RawConfigParser()
+parser.read(os.path.abspath(os.path.dirname(__file__)+"/gjms.cfg"))
 
-label = ""
-
-manager = ""
-manager_email = ""
-
-database = "sqlite:///gjms_database.db"
-theme_voting = False
-game_ratings = False
+gjms.util.report.output(parser.sections())
