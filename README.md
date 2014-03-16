@@ -30,7 +30,7 @@ These are the things you need to do:
 * Setup a proxy to localhost on port 8196 via .htaccess:<br>
 <code>RewriteEngine On<br>
 RewriteRule ^(.*)$ http://127.0.0.1:8196/path/to/gjms/$1 [P]</code><br>
-* Start GJMS with the included Twisted WSGI server: `twistd -n web --port 8196 --wsgi gjms.app`
+* Start GJMS with the included shell script: `./start`
 
 You should be greeted by a little intro text and some server output telling you that it created an instance of itself.
 After you set up your proxy, go to [your-website.com/gjms-config/](#), which will guide you through a setup process to get all necessary data. After finishing the setup process you are ready to go!
