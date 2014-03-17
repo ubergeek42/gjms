@@ -62,6 +62,5 @@ class config(Form):
     ratings = wtforms.BooleanField(u"Game ratings:", [wtforms.validators.optional()])
 
 gjms.util.report.output("GJMS configuration form..")
-
 gjms.util.report.output("Forms generated!")
 
