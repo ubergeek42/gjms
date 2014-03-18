@@ -1,0 +1,42 @@
+{% extends "backend/base.html" %}
+{% from "layout/forms.html" import gjms_field with context %}
+
+{% block gjms_title %}Configuration{% endblock %}
+{% block gjms_site %}config{% endblock %}
+
+{% block gjms_content %}
+    <h1>Configuration</h1>
+    <h2>Options for your game jam(s)</h2>
+    <p>This is the place to change the identity of your game jam, as well as database settings.</p>
+    <p>Hover over the fields or the labels to get more information about each one.</p>
+
+    <form action="" method="post" class="gjms-form config-form">
+        <div class="gjms-form-container">
+            <h2 class="bold">General</h2>
+            {{ gjms_field(form.label) }}
+            {{ gjms_field(form.manager) }}
+            {{ gjms_field(form.m_email) }}<br><br>
+            {{ gjms_field(form.v_theme) }}
+            {{ gjms_field(form.ratings) }}
+            {{ gjms_field(form.comments) }}
+            <p class="gjms-db-url"><span class="bold">DB URL: </span>{{ config.get("gjms", "db_url") }}</p>
+        </div>
+
+        <div class="gjms-form-container">
+            <h2 class="bold">Database related</h2>
+            {{ gjms_field(form.engine) }}
+            {{ gjms_field(form.host) }}
+            {{ gjms_field(form.port) }}
+            {{ form.hidden_tag() }}
+            <input type="submit" value="Save">
+
+        </div>
+
+        <div class="gjms-form-container">
+            <h2>&nbsp;</h2>
+            {{ gjms_field(form.user) }}
+            {{ gjms_field(form.password) }}
+            {{ gjms_field(form.db) }}
+        </div>
+    </form>
+{% endblock %}

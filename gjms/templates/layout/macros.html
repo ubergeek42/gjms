@@ -1,25 +1,26 @@
 {% macro gjms_layout_menu() -%}
+<div id="gjms-header">
     <nav id="gjms-menu">
         <ul>
-            <a href="#">
+            <a href="/gjms/">
                 <li class="gjms-menu-entry home">
                     <i class="fa fa-home"></i> Home
                 </li>
             </a>
 
-            <a href="#">
+            <a href="/gjms/users/">
                 <li class="gjms-menu-entry users">
                     <i class="fa fa-user"></i> Users
                 </li>
             </a>
 
-            <a href="#">
+            <a href="/gjms/games/">
                 <li class="gjms-menu-entry games">
                     <i class="fa fa-gamepad"></i> Games
                 </li>
             </a>
 
-            <a href="#">
+            <a href="/gjms/events/">
                 <li class="gjms-menu-entry events">
                     <i class="fa fa-flag"></i> Events
                 </li>
@@ -32,9 +33,12 @@
             </a>
         </ul>
     </nav>
+</div>
 {%- endmacro %}
 
 {% macro gjms_layout_version() -%}
-    <p id="gjms-copyright">Game Jam Management System &copy; pixelspade 2014</p>
-    <p id="gjms-version">v{{ config.get("gjms", "version") }}</p>
+    <!-- <div id="gjms-footer">
+        <span id="gjms-copyright">Game Jam Management System &copy; pixelspade 2014</span>
+        <span id="gjms-version">v{{ config.get("gjms", "version") }}</span>
+    </div> -->
 {%- endmacro %}

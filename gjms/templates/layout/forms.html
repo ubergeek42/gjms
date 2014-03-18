@@ -1,0 +1,53 @@
+<!--
+    Render a standardized form.
+    No real control over structure.
+-->
+{% macro gjms_form(form) -%}
+    <form action="" method="POST">
+        <ul class="gjms-form">
+        {{ form.hidden_tag() }}
+        {% for field in form %}
+            <li class="gjms-row {% if field.type == 'BooleanField' %}boolean{% endif %}">
+                <span class="gjms-cell gjms-label">
+                    {{ field.label(title=field.description, **kwargs)|e }}
+                    {% if field.flags.required %}
+                        <span class="gjms-required">*</span>
+                    {% endif %}
+                </span>
+                {% if field.type != 'BooleanField' %}<br>{% endif %}
+                <span class="gjms-cell">{{ field(title=field.description, **kwargs)|safe }}</span>
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                      <span class="gjms-field-error">{{ error }}</span>
+                    {% endfor %}
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+        <input type="submit" value="Save">
+    </form>
+{%- endmacro %}
+
+
+<!--
+    Render a single field.
+    Can be used to construct custom field layouts.
+-->
+{% macro gjms_field(field) -%}
+    <div class="gjms-row {% if field.type == 'BooleanField' %}boolean{% endif %}">
+        <span class="gjms-cell gjms-label">
+            {{ field.label(title=field.description, **kwargs)|e }}
+            {% if field.flags.required %}
+                <span class="gjms-required">*</span>
+            {% endif %}
+
+            {% if field.errors %}
+                {% for error in field.errors %}
+                  <span class="gjms-field-error">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </span>
+        {% if field.type != 'BooleanField' %}<br>{% endif %}
+        <span class="gjms-cell">{{ field(title=field.description, **kwargs)|safe }}</span>
+    </div>
+{%- endmacro %}

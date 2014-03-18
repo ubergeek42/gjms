@@ -4,10 +4,14 @@ Flask-Login==0.2.10
 Flask-WTF==0.9.4
 Jinja2==2.7.2
 MarkupSafe==0.19
+MySQL-python==1.2.5
 SQLAlchemy==0.7.9
 WTForms==1.0.5
 Werkzeug==0.9.4
 argparse==1.2.1
+astroid==1.0.1
 itsdangerous==0.23
+logilab-common==0.61.0
+pylint==1.1.0
 simple-pbkdf2==1.0
 wsgiref==0.1.2

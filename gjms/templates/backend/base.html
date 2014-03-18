@@ -1,5 +1,5 @@
-{% from "gjms-layout.html" import gjms_layout_menu with context %}
-{% from "gjms-layout.html" import gjms_layout_version with context %}
+{% from "layout/macros.html" import gjms_layout_menu with context %}
+{% from "layout/macros.html" import gjms_layout_version with context %}
 
 <!--
 
@@ -29,8 +29,8 @@
 
     <!-- Stylesheets -->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:300|Oswald:700' rel='stylesheet' type='text/css'>
-    <link href="/media/css/style.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300,700|Oswald:700' rel='stylesheet' type='text/css'>
+    <link href="../../media/css/style.css" rel="stylesheet">
 
     <!-- Javascript including the master control program (mcp.js) -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
@@ -48,6 +48,5 @@
         </section>
 
         {{ gjms_layout_version() }}
-        {{ config.label }}, {{ config.manager }}
     </body>
 </html>

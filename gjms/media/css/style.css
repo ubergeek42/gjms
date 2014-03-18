@@ -132,23 +132,33 @@ table {
  *      Change at will. Be sure to compile it to style.css
  *      afterwards, though.
  */
-h1 {
-  margin-bottom: 1rem;
-  font-family: Oswald;
-  color: #444444;
+body {
+  overflow-x: hidden;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+p,
+li {
+  line-height: 120%;
+  font-size: 1.05rem;
 }
 h2,
 h3,
 h4,
-p,
-li {
+body {
   font-family: Roboto;
   color: #444444;
 }
 h1 {
+  margin-bottom: 0.5rem;
+  font-family: Oswald;
   font-size: 2.33rem;
+  color: #444444;
 }
 h2 {
+  margin-bottom: 1rem;
   font-size: 1.55rem;
 }
 h3 {
@@ -157,34 +167,32 @@ h3 {
 h4 {
   font-size: 1.22rem;
 }
-p,
-li {
-  font-size: 1.05rem;
-}
-a {
-  color: inherit;
-  text-decoration: none;
-}
-input[type="text"] {
+input[type="text"],
+input[type="password"] {
   border: 1px solid #aaaaaa;
   padding: 5px;
   margin-top: 5px;
+  width: 200px;
 }
 input[type="submit"] {
-  margin-top: 20px;
   padding: 5px 10px;
   min-width: 80px;
   border: 0;
   background-color: #0070ba;
   color: #ffffff;
 }
-#gjms-headline,
-#gjms-menu {
-  margin-top: 2rem;
+select {
+  border: 1px solid #aaaaaa;
+  padding: 4px 5px;
+  margin-top: 5px;
+  width: 213px;
+  background: #ffffff;
 }
-#gjms-menu {
-  float: left;
-  margin-left: 2rem;
+label[for="csrf_token"] {
+  display: none;
+}
+#gjms-header {
+  width: 100%;
 }
 .gjms-menu-entry {
   padding: 0.5rem 1rem;
@@ -204,77 +212,73 @@ input[type="submit"] {
 .gjms-menu-entry:hover .fa {
   color: #ffffff;
 }
-.users .gjms-menu-entry.users {
-  background: #0070ba;
-  color: #ffffff;
-}
-.users .gjms-menu-entry.users .fa {
-  color: #ffffff;
-}
-.games .gjms-menu-entry.games {
-  background: #0070ba;
-  color: #ffffff;
-}
-.games .gjms-menu-entry.games .fa {
-  color: #ffffff;
-}
+.home .gjms-menu-entry.home,
+.games .gjms-menu-entry.games,
+.users .gjms-menu-entry.users,
+.config .gjms-menu-entry.config,
 .events .gjms-menu-entry.events {
   background: #0070ba;
   color: #ffffff;
 }
+.home .gjms-menu-entry.home .fa,
+.games .gjms-menu-entry.games .fa,
+.users .gjms-menu-entry.users .fa,
+.config .gjms-menu-entry.config .fa,
 .events .gjms-menu-entry.events .fa {
   color: #ffffff;
 }
-.config .gjms-menu-entry.config {
-  background: #0070ba;
-  color: #ffffff;
-}
-.config .gjms-menu-entry.config .fa {
-  color: #ffffff;
+.bold {
+  font-weight: 700;
 }
 #gjms-content {
-  width: 90%;
-  position: absolute;
-  left: 2rem;
-  top: 7rem;
+  width: 95%;
+  padding: 2.5% 2.5%;
 }
-#gjms-version,
-#gjms-copyright {
-  position: absolute;
-  bottom: 1.25rem;
-  font-size: 85%;
+.config .gjms-form-container:nth-of-type(1) {
+  display: inline-block;
+  float: left;
+  width: 30%;
 }
-#gjms-version {
-  right: 2rem;
-}
-#gjms-copyright {
-  left: 2rem;
+.gjms-form-container {
+  display: inline-block;
+  float: left;
+  width: 25%;
 }
 .gjms-form {
-  width: 500px;
   margin-top: 1.5rem;
 }
-.gjms-cell {
-  display: table-cell;
-  width: 7rem;
-}
-.gjms-cell label[for="csrf_token"] {
-  display: none;
+.gjms-row {
+  margin-top: 0.5rem;
 }
 .gjms-row.boolean {
-  display: inline;
+  margin-top: 0;
 }
-.gjms-row.boolean .gjms-cell {
-  padding-top: 0.5rem;
+.gjms-row.boolean .gjms-cell:first-child {
+  width: 9rem;
 }
 .gjms-row.boolean .gjms-cell:last-child {
-  width: 65px;
+  padding-top: 1px;
+}
+.gjms-row.boolean .gjms-label {
+  font-size: 100%;
+}
+.gjms-cell {
+  display: inline-block;
+}
+.gjms-label {
+  font-size: 80%;
 }
 .gjms-required,
 .gjms-field-error {
   color: red;
 }
 .gjms-field-error {
-  display: table-cell;
-  padding-left: 1rem;
+  margin-left: 2rem;
+}
+.config-form input[type="submit"] {
+  margin-top: 1.9rem;
+}
+.gjms-db-url {
+  margin-top: 10px;
+  font-size: 80%;
 }

@@ -118,7 +118,7 @@ class Event(elixir.Entity):
     def __repr__(self):
         return "<Event '%s' (%s - %s)>" % (self.name, self.start, self.end)
 
-gjms.util.database.setup(gjms.config.parser.get("gjms", "database"))
+gjms.util.database.setup(gjms.config.parser.get("gjms", "db_url"))
 
 elixir.setup_all()
 elixir.create_all()
