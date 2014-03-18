@@ -16,9 +16,8 @@ import elixir
 import gjms.util.database
 from gjms.config import parser
 
-
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
-
+elixir.options_defaults.update(dict(tablename=lambda cls: cls.__name__.lower()))
 
 class User(elixir.Entity):
     """
