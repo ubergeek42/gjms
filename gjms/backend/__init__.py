@@ -64,10 +64,10 @@ def gjms_login(name, pwd):
         return "User does not exist. Sorry."
 gjms.util.report.output("Setup route /login/<name>/<pwd>")
 
-@app.route("/gjms/")
+@app.route("/gjms/home/")
 def gjms_central():
     return flask.render_template("backend/home.html", config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
-gjms.util.report.output("Setup route /gjms/")
+gjms.util.report.output("Setup route /gjms/home/")
 
 @app.route("/gjms/users/")
 def gjms_users():
