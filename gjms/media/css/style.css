@@ -180,6 +180,10 @@ input[type="submit"] {
   border: 0;
   background-color: #0070ba;
   color: #ffffff;
+  transition: 0.3s ease-in-out;
+}
+input[type="submit"]:hover {
+  background: #44b4fe;
 }
 select {
   border: 1px solid #aaaaaa;
@@ -193,39 +197,41 @@ label[for="csrf_token"] {
 }
 #gjms-header {
   width: 100%;
+  background: #0070ba;
 }
 .gjms-menu-entry {
   padding: 0.5rem 1rem;
   display: inline-block;
   font-size: 1.5rem;
   transition: 0.3s all;
+  color: #ffffff;
 }
 .gjms-menu-entry .fa {
   font-size: 100%;
-  color: #0070ba;
+  color: #ffffff;
   transition: 0.3s all;
 }
 .gjms-menu-entry:hover {
-  background: #0070ba;
-  color: #ffffff;
+  background: #ffffff;
+  color: #0070ba;
 }
 .gjms-menu-entry:hover .fa {
-  color: #ffffff;
+  color: #0070ba;
 }
 .home .gjms-menu-entry.home,
 .games .gjms-menu-entry.games,
 .users .gjms-menu-entry.users,
 .config .gjms-menu-entry.config,
 .events .gjms-menu-entry.events {
-  background: #0070ba;
-  color: #ffffff;
+  background: #ffffff;
+  color: #0070ba;
 }
 .home .gjms-menu-entry.home .fa,
 .games .gjms-menu-entry.games .fa,
 .users .gjms-menu-entry.users .fa,
 .config .gjms-menu-entry.config .fa,
 .events .gjms-menu-entry.events .fa {
-  color: #ffffff;
+  color: #0070ba;
 }
 .bold {
   font-weight: 700;
@@ -234,15 +240,10 @@ label[for="csrf_token"] {
   width: 95%;
   padding: 2.5% 2.5%;
 }
-.config .gjms-form-container:nth-of-type(1) {
-  display: inline-block;
-  float: left;
-  width: 30%;
-}
 .gjms-form-container {
   display: inline-block;
   float: left;
-  width: 25%;
+  width: 250px;
 }
 .gjms-form {
   margin-top: 1.5rem;
@@ -267,13 +268,14 @@ label[for="csrf_token"] {
 }
 .gjms-label {
   font-size: 80%;
+  width: 212px;
 }
 .gjms-required,
 .gjms-field-error {
   color: red;
 }
 .gjms-field-error {
-  margin-left: 2rem;
+  float: right;
 }
 .config-form input[type="submit"] {
   margin-top: 1.9rem;

@@ -27,12 +27,12 @@ h3 { font-size: 1.40rem; }
 h4 { font-size: 1.22rem; }
 
 input[type="text"], input[type="password"] {border: 1px solid @gjms-light; padding: 5px; margin-top: 5px; width: 200px; }
-input[type="submit"] { padding: 5px 10px; min-width: 80px; border: 0; background-color: @gjms-blue; color: @gjms-white; }
+input[type="submit"] { padding: 5px 10px; min-width: 80px; border: 0; background-color: @gjms-blue; color: @gjms-white; transition: 0.3s ease-in-out; &:hover { background: @gjms-blue + #444; }}
 select {border: 1px solid @gjms-light; padding: 4px 5px; margin-top: 5px; width: 213px; background: #FFF }
 
 label[for="csrf_token"] { display: none; }
 
-#gjms-header { width: 100%; }
+#gjms-header { width: 100%; background: @gjms-blue; }
 .gjms-menu-entry {
     padding: 0.5rem 1rem;
     display: inline-block;
@@ -40,19 +40,20 @@ label[for="csrf_token"] { display: none; }
     font-size: 1.5rem;
 
     transition: 0.3s all;
+    color: @gjms-white;
 
     .fa {
         font-size: 100%;
-        color: @gjms-blue;
+        color: @gjms-white;
 
         transition: 0.3s all;
     }
 
     &:hover {
-        background: @gjms-blue;
-        color: @gjms-white;
+        background: @gjms-white;
+        color: @gjms-blue;
 
-        .fa { color: @gjms-white; }
+        .fa { color: @gjms-blue; }
     }
 }
 
@@ -61,17 +62,16 @@ label[for="csrf_token"] { display: none; }
 .users .gjms-menu-entry.users,
 .config .gjms-menu-entry.config,
 .events .gjms-menu-entry.events {
-    background: @gjms-blue;
-    color: @gjms-white;
+    background: @gjms-white;
+    color: @gjms-blue;
 
-    .fa { color: @gjms-white; }
+    .fa { color: @gjms-blue; }
 }
 
 .bold { font-weight: 700; }
 
 #gjms-content { width: 95%; padding: 2.5% 2.5%; }
-.config .gjms-form-container:nth-of-type(1) { display: inline-block; float: left; width: 30%; }
-.gjms-form-container { display: inline-block; float: left; width: 25%; }
+.gjms-form-container { display: inline-block; float: left; width: 250px; }
 .gjms-form { margin-top: 1.5rem; }
 
 .gjms-row { margin-top: 0.5rem; }
@@ -79,9 +79,9 @@ label[for="csrf_token"] { display: none; }
 .gjms-row.boolean .gjms-label { font-size: 100%; }
 
 .gjms-cell { display: inline-block; }
-.gjms-label { font-size: 80%; }
+.gjms-label { font-size: 80%; width: 212px; }
 .gjms-required, .gjms-field-error { color: red; }
-.gjms-field-error { margin-left: 2rem; }
+.gjms-field-error { float: right; }
 
 .config-form { input[type="submit"] { margin-top: 1.9rem; } }
 .gjms-db-url { margin-top: 10px; font-size: 80%; }
