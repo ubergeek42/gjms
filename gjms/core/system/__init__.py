@@ -28,11 +28,10 @@ def get(id_name):
         Gets a system by the given ID
     """
 
-    system = GJMS.get_by(id=id_name)
+    system = GJMS.get_by_or_init(id=id_name)
     if type(system) != GJMS:
         raise gjms.core.exceptions.NonExistentPlatform("This system does not exist")
     else:
         return system
 
-add("gjms_main")
 elixir.session.commit()
