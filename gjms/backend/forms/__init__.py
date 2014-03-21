@@ -62,7 +62,7 @@ class config(Form):
     comments = wtforms.BooleanField(label=u"Game comments:", description="Allow comments?", validators=[wtforms.validators.optional()])
 
     # Database stuff.
-    engine = wtforms.SelectField(u"Engine:", description="Which database backend to use.", validators=[wtforms.validators.required()], choices=[('mysql', 'MySQL'), ('postgre', 'PostgreSQL')])
+    engine = wtforms.SelectField(u"Engine:", description="Which database backend to use.", validators=[wtforms.validators.required()], choices=[('sqlite', 'SQLite'), ('mysql', 'MySQL'), ('postgre', 'PostgreSQL')])
     host = wtforms.TextField(label=u"Host:", description="Database host. Usually localhost", validators=[wtforms.validators.required()])
     port = wtforms.TextField(label=u"Port:", description="Database port. Usually 3306", validators=[wtforms.validators.optional()])
     user = wtforms.TextField(label=u"User:", description="Database user. Depends on host.", validators=[wtforms.validators.optional()])

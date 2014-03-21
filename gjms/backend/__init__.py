@@ -42,6 +42,7 @@ app.debug = True
 lm = flask.ext.login.LoginManager()
 lm.init_app(app)
 
+
 @lm.user_loader
 def load_user(userid):
     """ Grab the user for the login manager. """
@@ -59,7 +60,7 @@ def gjms_populate(entries):
 
     try:
         entries = int(entries)
-    except:
+    except TypeError:
         return "Please enter an integer."
     else:
         return gjms.util.populate_db(entries)
@@ -78,33 +79,35 @@ def gjms_login(name, pwd):
         return "User does not exist. Sorry."
 gjms.util.report.output("Setup route /login/<name>/<pwd>")
 
-system = gjms.core.system.get(1)
-
 @app.route("/gjms/home/")
 def gjms_central():
     if parser.getboolean("gjms", "database_setup") == False:
-        return flask.redirect(flask.url_for("gjms_config"))
+        return flask.redirect("../../gjms/config/")
+    system = gjms.core.system.get(1)
     return flask.render_template("backend/home.html", system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
 gjms.util.report.output("Setup route /gjms/home/")
 
 @app.route("/gjms/users/")
 def gjms_users():
     if parser.getboolean("gjms", "database_setup") == False:
-        return flask.redirect(flask.url_for("gjms_config"))
+        return flask.redirect("../../gjms/config/")
+    system = gjms.core.system.get(1)
     return flask.render_template("backend/users.html", system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
 gjms.util.report.output("Setup route /gjms/users/")
 
 @app.route("/gjms/games/")
 def gjms_games():
     if parser.getboolean("gjms", "database_setup") == False:
-        return flask.redirect(flask.url_for("gjms_config"))
+        return flask.redirect("../../gjms/config/")
+    system = gjms.core.system.get(1)
     return flask.render_template("backend/games.html", system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
 gjms.util.report.output("Setup route /gjms/games/")
 
 @app.route("/gjms/events/")
 def gjms_events():
     if parser.getboolean("gjms", "database_setup") == False:
-        return flask.redirect(flask.url_for("gjms_config"))
+        return flask.redirect("../../gjms/config/")
+    system = gjms.core.system.get(1)
     return flask.render_template("backend/events.html", system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
 gjms.util.report.output("Setup route /gjms/events/")
 
@@ -129,7 +132,9 @@ def gjms_config():
             parser.set("gjms", "database_password", form.password.data)
             parser.set("gjms", "database", form.db.data)
 
-            if form.port.data == "":
+            if form.engine.data == "sqlite":
+                db_url = "sqlite:///%s?check_same_thread=False" % form.host.data
+            elif form.engine.data != "sqlite" and form.port.data == "":
                 db_url = "%s://%s:%s@%s/%s" % (form.engine.data, form.user.data, form.password.data, form.host.data, form.db.data)
             else:
                 db_url = "%s://%s:%s@%s:%s/%s" % (form.engine.data, form.user.data, form.password.data, form.host.data, form.port.data, form.db.data)
@@ -143,6 +148,10 @@ def gjms_config():
 
             cfgfile = open(os.path.abspath(os.path.dirname(__file__)+"/../gjms.cfg"), "w")
             gjms.config.parser.write(cfgfile)
+
+            flask.flash(u"Settings saved!", "success")
+        else:
+            flask.flash(u"Woops! That didn't work. Check below for details.", "error")
     else:
         form.label.data = parser.get("gjms", "label")
         form.manager.data = parser.get("gjms", "manager")
@@ -158,5 +167,6 @@ def gjms_config():
         form.password.data = parser.get("gjms", "database_password")
         form.db.data = parser.get("gjms", "database")
 
+    system = gjms.core.system.get(1)
     return flask.render_template("backend/config.html", form=form, system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
 gjms.util.report.output("Setup route /gjms/config/")

@@ -15,6 +15,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 @gjms-light:    #AAA;
 @gjms-white:    #FFF;
 @gjms-blue:  #0070BA;
+@gjms-yellow: #FFFF6B;
+@gjms-green: #8AFF63;
+@gjms-red: #FFA8A8;
 
 body { overflow-x: hidden; }
 a {color: inherit; text-decoration: none; }
@@ -83,5 +86,22 @@ label[for="csrf_token"] { display: none; }
 .gjms-required, .gjms-field-error { color: red; }
 .gjms-field-error { float: right; }
 
-.config-form { input[type="submit"] { margin-top: 1.9rem; } }
-.gjms-db-url { margin-top: 10px; font-size: 80%; }
+.config-form { input[type="submit"] { margin-top: 1.9rem; }}
+
+.gjms-notice {
+    background: @gjms-yellow; color: @gjms-yellow - #799; border: 1px solid @gjms-yellow - #577; padding: 10px; font-size: 19px; margin-bottom: 15px;
+    .fa { font-size: 24px; display: table-cell; vertical-align: middle; width: 30px; }
+    p { position: relative; top: 0px; left: 7px; display: table-cell; vertical-align: middle; }
+}
+
+.gjms-error {
+    background: @gjms-red; color: @gjms-red - #799; border: 1px solid @gjms-red - #577; padding: 10px; font-size: 19px; margin-bottom: 15px;
+    .fa { font-size: 24px; display: table-cell; vertical-align: middle; width: 30px; }
+    p { position: relative; top: 0px; left: 7px; display: table-cell; vertical-align: middle; }
+}
+
+.gjms-success {
+    background: @gjms-green; color: @gjms-green - #799; border: 1px solid @gjms-green - #577; padding: 10px; font-size: 19px; margin-bottom: 15px;
+    .fa { font-size: 24px; display: table-cell; vertical-align: middle; width: 30px; }
+    p { position: relative; top: 0px; left: 7px; display: table-cell; vertical-align: middle; }
+}

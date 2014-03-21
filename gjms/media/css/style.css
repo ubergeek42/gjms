@@ -280,7 +280,66 @@ label[for="csrf_token"] {
 .config-form input[type="submit"] {
   margin-top: 1.9rem;
 }
-.gjms-db-url {
-  margin-top: 10px;
-  font-size: 80%;
+.gjms-notice {
+  background: #ffff6b;
+  color: #886600;
+  border: 1px solid #aa8800;
+  padding: 10px;
+  font-size: 19px;
+  margin-bottom: 15px;
+}
+.gjms-notice .fa {
+  font-size: 24px;
+  display: table-cell;
+  vertical-align: middle;
+  width: 30px;
+}
+.gjms-notice p {
+  position: relative;
+  top: 0px;
+  left: 7px;
+  display: table-cell;
+  vertical-align: middle;
+}
+.gjms-error {
+  background: #ffa8a8;
+  color: #880f0f;
+  border: 1px solid #aa3131;
+  padding: 10px;
+  font-size: 19px;
+  margin-bottom: 15px;
+}
+.gjms-error .fa {
+  font-size: 24px;
+  display: table-cell;
+  vertical-align: middle;
+  width: 30px;
+}
+.gjms-error p {
+  position: relative;
+  top: 0px;
+  left: 7px;
+  display: table-cell;
+  vertical-align: middle;
+}
+.gjms-success {
+  background: #8aff63;
+  color: #136600;
+  border: 1px solid #358800;
+  padding: 10px;
+  font-size: 19px;
+  margin-bottom: 15px;
+}
+.gjms-success .fa {
+  font-size: 24px;
+  display: table-cell;
+  vertical-align: middle;
+  width: 30px;
+}
+.gjms-success p {
+  position: relative;
+  top: 0px;
+  left: 7px;
+  display: table-cell;
+  vertical-align: middle;
 }

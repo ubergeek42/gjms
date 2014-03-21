@@ -34,4 +34,5 @@ def get(id_name):
     else:
         return system
 
+gjms_system = get(1)
 elixir.session.commit()

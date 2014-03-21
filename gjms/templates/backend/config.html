@@ -1,10 +1,21 @@
 {% extends "backend/base.html" %}
 {% from "layout/forms.html" import gjms_field with context %}
+{% from "layout/macros.html" import gjms_error with context %}
+{% from "layout/macros.html" import gjms_notice with context %}
+{% from "layout/macros.html" import gjms_success with context %}
+{% from "layout/macros.html" import gjms_messages with context %}
 
 {% block gjms_title %}Configuration{% endblock %}
 {% block gjms_site %}config{% endblock %}
 
 {% block gjms_content %}
+    {% if config.get("gjms", "database_setup") == "False" %}
+        {{ gjms_success("Hey there! Welcome to the Game Jam Management System!") }}
+        {{ gjms_notice("Before we can get started, we need you to setup your database. You have the choice between SQLite, MySQL and PostgreSQL. If you want to use MySQL/Postgre, please fill out the form below. If you want to use SQLite, just hit the Save button and you're good to go.") }}
+    {% endif %}
+
+    {{ gjms_messages() }}
+
     <h1>Configuration</h1>
     <h2>Options for your game jam(s)</h2>
     <p>This is the place to change the identity of your game jam, as well as database settings.</p>

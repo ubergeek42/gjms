@@ -36,12 +36,47 @@
 </div>
 {%- endmacro %}
 
-{% macro gjms_layout_version() -%}
-{%- endmacro %}
-
 {% macro gjms_events(amount) -%}
     <!-- <div id="gjms-footer">
         <span id="gjms-copyright">Game Jam Management System &copy; pixelspade 2014</span>
         <span id="gjms-version">v{{ config.get("gjms", "version") }}</span>
     </div> -->
+{%- endmacro %}
+
+{% macro gjms_error(text) -%}
+    <div class="gjms-error">
+        <i class="fa fa-exclamation-circle"></i><p><span class="bold">Error:</span> {{ text }}</p>
+    </div>
+{%- endmacro %}
+
+{% macro gjms_notice(text) -%}
+    <div class="gjms-notice">
+        <i class="fa fa-question-circle"></i><p><span class="bold">Notice:</span> {{ text }}</p>
+    </div>
+{%- endmacro %}
+
+{% macro gjms_success(text) -%}
+    <div class="gjms-success">
+        <i class="fa fa-check-circle"></i><p><span class="bold">Success:</span> {{ text }}</p>
+    </div>
+{%- endmacro %}
+
+{% macro gjms_messages() -%}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {% if category == "success" %}
+                    {{ gjms_success(message) }}
+                {% endif %}
+
+                {% if category == "notice" %}
+                    {{ gjms_notice(message) }}
+                {% endif %}
+
+                {% if category == "error" %}
+                    {{ gjms_error(message) }}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 {%- endmacro %}
