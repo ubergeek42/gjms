@@ -14,6 +14,8 @@ import sys
 
 import gjms.util.report
 import gjms.util.password
+
+import gjms.core.system
 import gjms.core.users
 import gjms.core.events
 import gjms.core.games
@@ -50,6 +52,17 @@ def gjms_main():
     """ Setup root """
 gjms.util.report.output("Setup route /")
 
+@app.route("/populate/<entries>")
+def gjms_populate(entries):
+    import gjms.util
+
+    try:
+        entries = int(entries)
+    except:
+        return "Please enter an integer."
+    else:
+        return gjms.util.populate_db(entries)
+
 @app.route("/login/<name>/<pwd>")
 def gjms_login(name, pwd):
     """ Test login function. """
@@ -64,24 +77,26 @@ def gjms_login(name, pwd):
         return "User does not exist. Sorry."
 gjms.util.report.output("Setup route /login/<name>/<pwd>")
 
+system = gjms.core.system.get(1)
+
 @app.route("/gjms/home/")
 def gjms_central():
-    return flask.render_template("backend/home.html", config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
+    return flask.render_template("backend/home.html", system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
 gjms.util.report.output("Setup route /gjms/home/")
 
 @app.route("/gjms/users/")
 def gjms_users():
-    return flask.render_template("backend/users.html", config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
+    return flask.render_template("backend/users.html", system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
 gjms.util.report.output("Setup route /gjms/users/")
 
 @app.route("/gjms/games/")
 def gjms_games():
-    return flask.render_template("backend/games.html", config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
+    return flask.render_template("backend/games.html", system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
 gjms.util.report.output("Setup route /gjms/games/")
 
 @app.route("/gjms/events/")
 def gjms_events():
-    return flask.render_template("backend/events.html", config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
+    return flask.render_template("backend/events.html", system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
 gjms.util.report.output("Setup route /gjms/events/")
 
 @app.route("/gjms/config/", methods=["GET", "POST"])
@@ -131,5 +146,5 @@ def gjms_config():
         form.password.data = gjms.config.parser.get("gjms", "database_password")
         form.db.data = gjms.config.parser.get("gjms", "database")
 
-    return flask.render_template("backend/config.html", form=form, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
+    return flask.render_template("backend/config.html", form=form, system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
 gjms.util.report.output("Setup route /gjms/config/")

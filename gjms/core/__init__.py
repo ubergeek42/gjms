@@ -1,6 +1,6 @@
 #coding: utf8
 
-""" 
+"""
 
     gjms.core
 

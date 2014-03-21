@@ -19,12 +19,24 @@ from gjms.config import parser
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 elixir.options_defaults.update(dict(tablename=lambda cls: cls.__name__.lower()))
 
+def get_by_or_init(cls, if_new_set={}, **params):
+    """Call get_by; if no object is returned, initialize an
+    object with the same parameters.  If a new object was
+    created, set any initial values."""
+
+    result = cls.get_by(**params)
+    if not result:
+        result = cls(**params)
+        result.set(**if_new_set)
+    return result
+
+elixir.Entity.get_by_or_init = classmethod(get_by_or_init)
+
 class User(elixir.Entity):
     """
         The User model. Contains all information about a user
         and allows querying. One user can have many games
     """
-
     name = elixir.Field(elixir.String(40), unique=True)
     password = elixir.Field(elixir.String(512))
     email = elixir.Field(elixir.String(50))
@@ -32,6 +44,8 @@ class User(elixir.Entity):
     participated = elixir.ManyToMany("Event")
     games = elixir.OneToMany("Game")
     ratings = elixir.OneToMany("Rating")
+
+    system = elixir.ManyToOne("GJMS")
 
     def is_authenticated(self):
         return True
@@ -61,6 +75,8 @@ class Game(elixir.Entity):
     ratings = elixir.ManyToMany("Rating")
     event = elixir.ManyToOne("Event")
 
+    system = elixir.ManyToOne("GJMS")
+
     def __repr__(self):
         return "<Game '%s' by %s>" % (self.name, self.author.name)
 
@@ -76,6 +92,8 @@ class Platform(elixir.Entity):
     download = elixir.Field(elixir.String(512))
     games = elixir.ManyToMany("Game")
 
+    system = elixir.ManyToOne("GJMS")
+
     def __repr__(self):
         return "<Platform '%s' (%s)>" % (self.name, self.download)
 
@@ -90,6 +108,8 @@ class Rating(elixir.Entity):
     value = elixir.Field(elixir.Float(4))
     games = elixir.ManyToMany("Game")
     user = elixir.ManyToOne("User")
+
+    system = elixir.ManyToOne("GJMS")
 
     def __repr__(self):
         return "<Rating %s>" % self.value
@@ -110,12 +130,32 @@ class Event(elixir.Entity):
     name = elixir.Field(elixir.String(512))
     theme = elixir.Field(elixir.String(256))
     voting = elixir.Field(elixir.Boolean())
+    comments = elixir.Field(elixir.Boolean())
 
     games = elixir.OneToMany("Game")
     participants = elixir.ManyToMany("User")
 
+    system = elixir.ManyToOne("GJMS")
+
     def __repr__(self):
         return "<Event '%s' (%s - %s)>" % (self.name, self.start, self.end)
+
+class GJMS(elixir.Entity):
+    """
+        The GJMS model. It contains references to all the other models.
+        Allows for easy listing of various things.
+    """
+    name = elixir.Field(elixir.String(32))
+
+    users = elixir.OneToMany("User")
+    games = elixir.OneToMany("Game")
+    platforms = elixir.OneToMany("Platform")
+    ratings = elixir.OneToMany("Rating")
+    events = elixir.OneToMany("Event")
+
+    def __repr__(self):
+        return "<GJMS - It's alive>"
+
 
 gjms.util.database.setup(gjms.config.parser.get("gjms", "db_url"))
 

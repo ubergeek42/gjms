@@ -37,4 +37,3 @@ print string.center("Visit http://yoursite.com/gjms-config/ to get started", w)
 print string.center("with the setup process of your game jam!", w)
 print string.center("Enjoy!\n", w)
 print string.center("________ Web server output below here ________\n", w)
-

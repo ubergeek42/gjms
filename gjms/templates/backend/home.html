@@ -4,4 +4,15 @@
 {% block gjms_site %}home{% endblock %}
 
 {% block gjms_content %}
+    <h1>{{ config.get("gjms", "label") }}</h1>
+    <h2>Hello, {{ config.get("gjms", "manager").split(" ")[0] }}. Welcome to the core.</h2>
+    <p>This is the backend of the Game Jam Managment System.</p>
+    <p>Here you can moderate everything regarding your game jam.</p><br>
+    <h2 class="bold">Quick overview</h2>
+    <h3>Recent events</h3><br>
+    {% for event in system.events %}
+        {% if loop.index <= 5 %}
+            <p><span class="bold">{{ event.name }}</span> {{ event.start.strftime("%d/%m/%Y") }}
+        {% endif %}
+    {% endfor %}
 {% endblock %}

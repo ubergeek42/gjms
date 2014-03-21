@@ -5,12 +5,9 @@ import os
 import sys
 
 import elixir
-
 import gjms.util.report
 
-
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
-
 gjms_database = elixir.metadata
 
 
