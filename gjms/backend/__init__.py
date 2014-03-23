@@ -12,6 +12,7 @@
 import os
 import sys
 import elixir
+import datetime
 
 import gjms.util.report
 import gjms.util.password
@@ -84,7 +85,7 @@ def gjms_central():
     if parser.getboolean("gjms", "database_setup") == False:
         return flask.redirect("../../gjms/config/")
     system = gjms.core.system.get(1)
-    return flask.render_template("backend/home.html", system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
+    return flask.render_template("backend/home.html", time=datetime, system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
 gjms.util.report.output("Setup route /gjms/home/")
 
 @app.route("/gjms/users/")
@@ -92,7 +93,7 @@ def gjms_users():
     if parser.getboolean("gjms", "database_setup") == False:
         return flask.redirect("../../gjms/config/")
     system = gjms.core.system.get(1)
-    return flask.render_template("backend/users.html", system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
+    return flask.render_template("backend/users.html", time=datetime, system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
 gjms.util.report.output("Setup route /gjms/users/")
 
 @app.route("/gjms/games/")
@@ -100,7 +101,7 @@ def gjms_games():
     if parser.getboolean("gjms", "database_setup") == False:
         return flask.redirect("../../gjms/config/")
     system = gjms.core.system.get(1)
-    return flask.render_template("backend/games.html", system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
+    return flask.render_template("backend/games.html", time=datetime, system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
 gjms.util.report.output("Setup route /gjms/games/")
 
 @app.route("/gjms/events/")
@@ -108,7 +109,7 @@ def gjms_events():
     if parser.getboolean("gjms", "database_setup") == False:
         return flask.redirect("../../gjms/config/")
     system = gjms.core.system.get(1)
-    return flask.render_template("backend/events.html", system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
+    return flask.render_template("backend/events.html", time=datetime, system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
 gjms.util.report.output("Setup route /gjms/events/")
 
 @app.route("/gjms/config/", methods=["GET", "POST"])
@@ -168,5 +169,5 @@ def gjms_config():
         form.db.data = parser.get("gjms", "database")
 
     system = gjms.core.system.get(1)
-    return flask.render_template("backend/config.html", form=form, system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
+    return flask.render_template("backend/config.html", form=form, time=datetime, system=system, config=parser, users=gjms.core.users, events=gjms.core.events, games=gjms.core.games, platforms=gjms.core.platforms, ratings=gjms.core.ratings)
 gjms.util.report.output("Setup route /gjms/config/")

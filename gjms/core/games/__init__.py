@@ -12,15 +12,15 @@
 
 import os
 import sys
+import slugify
 
-import gjms.util.database
 import gjms.util.url
+import gjms.util.database
 import gjms.core.exceptions
+
 from gjms.core.models import Game
 
-
 sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
-
 
 def add(name, description, image):
     """
@@ -36,11 +36,24 @@ def add(name, description, image):
         image_fixed = image
 
     if gjms.util.url.validate(image_fixed):
-        game = Game(name=name, description=description, image=image_fixed)
+        slug = slugify.slugify(name)
+
+        game = Game(slug=slug, name=name, description=description, image=image_fixed)
         return game
     else:
         raise gjms.core.exceptions.InvalidURL("URL not valid.")
 
+
+def by_slug(slug):
+    """
+        Get a game by its slug.
+    """
+
+    game = Game.get_by(slug=slug)
+    if type(game) != Game:
+        raise gjms.core.exceptions.NonExistentGame("Game with this slug does not exist.")
+    else:
+        return game
 
 def get(id_name):
     """

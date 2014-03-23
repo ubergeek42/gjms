@@ -12,6 +12,7 @@
 
 import os
 import sys
+import slugify
 import datetime
 
 import gjms.util.database
@@ -24,28 +25,40 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '../..'))
 
 
 def add(start, end, name, theme="", voting=False):
-    """ 
+    """
 
-        Preferred way to add an event. 
+        Preferred way to add an event.
 
         Checks for valid datetime formats, raises errors on failure.
         Automatically fills in an empty theme, and sets voting to false.
 
     """
 
+    slug = slugify.slugify(name)
+
     if type(start) == datetime.datetime:
         if type(end) == datetime.datetime:
-            event = Event(start=start, end=end, name=name, theme=theme, voting=voting)
+            event = Event(slug=slug, start=start, end=end, name=name, theme=theme, voting=voting)
             return event
         else:
             raise gjms.core.exceptions.InvalidValue("End time must be datetime")
     else:
         raise gjms.core.exceptions.InvalidValue("Start time must be datetime")
 
+def by_slug(slug):
+    """
+        Get an event by its slug.
+    """
+
+    event = Event.get_by(slug=slug)
+    if type(event) != Event:
+        raise gjms.core.exceptions.NonExistentEvent("Event with this slug does not exist.")
+    else:
+        return event
 
 def get(id_name):
     """
-        Gets an event by the given filter (either name or ID. ID preferred.) 
+        Gets an event by the given filter (either name or ID. ID preferred.)
     """
 
     event = Event.get_by(name=str(id_name).decode("utf-8"))
@@ -60,7 +73,7 @@ def get(id_name):
 
 
 def delete(id_name):
-    """ 
+    """
         Delete event. Supply either name, ID or a event object. (ID preferred.)
     """
 

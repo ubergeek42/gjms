@@ -65,8 +65,9 @@ class Game(elixir.Entity):
         The Game model. Contains all information about a game
         and allows querying. Many games can have one user.
     """
+    slug = elixir.Field(elixir.String(40))
 
-    name = elixir.Field(elixir.String(40), unique=True)
+    name = elixir.Field(elixir.String(40))
     description = elixir.Field(elixir.String(512))
     image = elixir.Field(elixir.String(512))
 
@@ -123,6 +124,8 @@ class Event(elixir.Entity):
 
         Many events can have many users and many games.
     """
+
+    slug = elixir.Field(elixir.String(512))
 
     start = elixir.Field(elixir.DateTime(512))
     end = elixir.Field(elixir.DateTime(512))

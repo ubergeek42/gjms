@@ -53,14 +53,23 @@ def populate_db(entries):
     import datetime
     import elixir
 
-    start = datetime.datetime(2014, 04, 01)
-    end = datetime.datetime(2014, 04, 03)
+    start1 = datetime.datetime.today() - datetime.timedelta(days=3)
+    end1 = datetime.datetime.today() - datetime.timedelta(days=1)
+
+    start2 = datetime.datetime.today() - datetime.timedelta(days=1)
+    end2 = datetime.datetime.today() + datetime.timedelta(days=1)
+
+    start3 = datetime.datetime.today() + datetime.timedelta(days=3)
+    end3 = datetime.datetime.today() + datetime.timedelta(days=5)
+
     system = system.get(1)
 
     for i in range(0, entries):
         user = users.add("John Doe %s" % i, "password", "johndoe@example.com")
         game = games.add("Flappy Doe %s" % i, "A Flappy Bird clone.", "http://hostagamejam.com/media/flappy-doe.png")
-        event = events.add(start, end, "Annual Doe Jam 2014", "Birds")
+        event1 = events.add(start1, end1, "Annual Doe Jam #1", "Birds")
+        event2 = events.add(start2, end2, "Annual Doe Jam #2", "Birds")
+        event3 = events.add(start3, end3, "Annual Doe Jam #3", "Birds")
         rating = ratings.add(4.0)
         platform1 = platforms.add("Android", "http://hostagamejam.com/media/flappy-doe.apk")
         platform2 = platforms.add("iOS", "http://hostagamejam.com/media/flappy-doe.ipa")
@@ -72,11 +81,13 @@ def populate_db(entries):
         game.platforms.append(platform1)
         game.platforms.append(platform2)
 
-        event.participants.append(user)
-        event.games.append(game)
+        event1.participants.append(user)
+        event1.games.append(game)
 
         system.users.append(user)
-        system.events.append(event)
+        system.events.append(event1)
+        system.events.append(event2)
+        system.events.append(event3)
         system.games.append(game)
         system.ratings.append(rating)
         system.platforms.append(platform1)

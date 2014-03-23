@@ -169,7 +169,7 @@ h4 {
 }
 input[type="text"],
 input[type="password"] {
-  border: 1px solid #aaaaaa;
+  border: 1px solid #cccccc;
   padding: 5px;
   margin-top: 5px;
   width: 200px;
@@ -186,7 +186,7 @@ input[type="submit"]:hover {
   background: #44b4fe;
 }
 select {
-  border: 1px solid #aaaaaa;
+  border: 1px solid #cccccc;
   padding: 4px 5px;
   margin-top: 5px;
   width: 213px;
@@ -194,6 +194,16 @@ select {
 }
 label[for="csrf_token"] {
   display: none;
+}
+.even,
+.odd {
+  padding: 5px;
+}
+.even {
+  background: #dddddd;
+}
+.odd {
+  background: #ffffff;
 }
 #gjms-header {
   width: 100%;

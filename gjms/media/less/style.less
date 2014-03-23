@@ -12,7 +12,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
  */
 
 @gjms-grey:     #444;
-@gjms-light:    #AAA;
+@gjms-light:    #CCC;
 @gjms-white:    #FFF;
 @gjms-blue:  #0070BA;
 @gjms-yellow: #FFFF6B;
@@ -34,6 +34,10 @@ input[type="submit"] { padding: 5px 10px; min-width: 80px; border: 0; background
 select {border: 1px solid @gjms-light; padding: 4px 5px; margin-top: 5px; width: 213px; background: #FFF }
 
 label[for="csrf_token"] { display: none; }
+
+.even, .odd { padding: 5px; }
+.even { background: @gjms-light + #111; }
+.odd  { background: @gjms-white; }
 
 #gjms-header { width: 100%; background: @gjms-blue; }
 .gjms-menu-entry {

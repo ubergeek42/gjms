@@ -37,10 +37,22 @@
 {%- endmacro %}
 
 {% macro gjms_events(amount) -%}
-    <!-- <div id="gjms-footer">
-        <span id="gjms-copyright">Game Jam Management System &copy; pixelspade 2014</span>
-        <span id="gjms-version">v{{ config.get("gjms", "version") }}</span>
-    </div> -->
+    {% for event in system.events|sort(attribute="start", reverse=True) %}
+        {% if loop.index <= amount %}
+            <p class="{% if loop.index % 2 == 0 %}even{% else %}odd{% endif %}">
+                <span class="bold">{{ event.name }}</span>
+                <span class="gjms-date">
+                    {% if event.start > time.datetime.today() %}
+                        (starts {{ event.start.strftime("%d/%m/%Y") }})
+                    {% elif event.start < time.datetime.today() < event.end %}
+                        is on! (ends {{ event.end.strftime("%d/%m/%Y") }})
+                    {% else %}
+                        (ended {{ event.end.strftime("%d/%m/%Y") }})
+                    {% endif %}
+                </span>
+            </p>
+        {% endif %}
+    {% endfor %}
 {%- endmacro %}
 
 {% macro gjms_error(text) -%}
