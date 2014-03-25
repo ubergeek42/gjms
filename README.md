@@ -1,5 +1,5 @@
 # [[![GJMS](http://hostagamejam.com/media/gjms-logo.png)](http://hostagamejam.com)](http://hostagamejam.com)
-> v0.7.1-alpha - Bringing game jam hosting to everyone!
+> v0.7.2-alpha - Bringing game jam hosting to everyone!
 
 ![alt text](https://api.travis-ci.org/Folis/gjms.png "TravisCI build status")
 
