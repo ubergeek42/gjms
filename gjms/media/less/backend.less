@@ -4,20 +4,12 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 /*
  *      Author: Richard Blechinger (http://twitter.com/F0lis)
  *
- *      style.less
+ *      backend.less
  *
- *      Some basic classes for setting up your site.
- *      Change at will. Be sure to compile it to style.css
- *      afterwards, though.
+ *      Styling the backend of GJMS
  */
 
-@gjms-grey:     #444;
-@gjms-light:    #CCC;
-@gjms-white:    #FFF;
-@gjms-blue:  #0070BA;
-@gjms-yellow: #FFFF6B;
-@gjms-green: #8AFF63;
-@gjms-red: #FFA8A8;
+@import "variables.less";
 
 body { overflow-x: hidden; }
 a {color: inherit; text-decoration: none; }
@@ -35,9 +27,18 @@ select {border: 1px solid @gjms-light; padding: 4px 5px; margin-top: 5px; width:
 
 label[for="csrf_token"] { display: none; }
 
-.even, .odd { padding: 5px; }
-.even { background: @gjms-light + #111; }
-.odd  { background: @gjms-white; }
+.gjms-tool-options { float: right;
+    a { transition: all 0.3s ease-in-out; padding-left: 5px; }
+    a:hover { color: @gjms-blue; }
+}
+
+.gjms-form-container.recent { width: 485px; h3 { .fa { color: @gjms-blue; }}}
+
+.gjms-event-list { width: 450px; margin-top: 0.75rem; border-top: 1px solid @gjms-light - #333; border-bottom: 1px solid @gjms-light - #333; }
+.gjms-list-row { margin: 0; padding: 0; }
+.gjms-list-row.even, .gjms-list-row.odd { padding: 5px 5px 6px 5px; }
+.gjms-list-row.even { background: @gjms-light + #111; }
+.gjms-list-row.odd  { background: @gjms-white; }
 
 #gjms-header { width: 100%; background: @gjms-blue; }
 .gjms-menu-entry {

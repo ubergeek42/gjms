@@ -1,58 +1,48 @@
-{% macro gjms_layout_menu() -%}
-<div id="gjms-header">
-    <nav id="gjms-menu">
-        <ul>
-            <a href="../../gjms/home/">
-                <li class="gjms-menu-entry home">
-                    <i class="fa fa-home"></i> Home
-                </li>
-            </a>
-
-            <a href="../../gjms/users/">
-                <li class="gjms-menu-entry users">
-                    <i class="fa fa-user"></i> Users
-                </li>
-            </a>
-
-            <a href="../../gjms/games/">
-                <li class="gjms-menu-entry games">
-                    <i class="fa fa-gamepad"></i> Games
-                </li>
-            </a>
-
-            <a href="../../gjms/events/">
-                <li class="gjms-menu-entry events">
-                    <i class="fa fa-flag"></i> Events
-                </li>
-            </a>
-
-            <a href="../../gjms/config/">
-                <li class="gjms-menu-entry config">
-                    <i class="fa fa-cog"></i> Configuration
-                </li>
-            </a>
-        </ul>
-    </nav>
-</div>
+{% macro gjms_games(amount) -%}
+    <div class="gjms-event-list">
+    {% for game in system.games %}
+        {% if loop.index <= amount %}
+            <div class="gjms-list-row {% if loop.index % 2 == 0 %}even{% else %}odd{% endif %}">
+                <span class="gjms-event-data">
+                    <span class="bold" title="{{ game.description }}">{{ game.name }}</span>
+                    <span class="gjms-author">({{ game.author.name }})</span>
+                    <span class="gjms-tool-options">
+                        <a href="/game/{{ game.slug }}" title="View game"><i class="fa fa-code"></i></a>
+                        <a href="/game/{{ game.slug }}/edit/" title="Edit"><i class="fa fa-wrench"></i></a>
+                    </span>
+                </span>
+            </div>
+        {% endif %}
+    {% endfor %}
+    </div>
 {%- endmacro %}
 
 {% macro gjms_events(amount) -%}
+    <div class="gjms-event-list">
     {% for event in system.events|sort(attribute="start", reverse=True) %}
         {% if loop.index <= amount %}
-            <p class="{% if loop.index % 2 == 0 %}even{% else %}odd{% endif %}">
-                <span class="bold">{{ event.name }}</span>
-                <span class="gjms-date">
-                    {% if event.start > time.datetime.today() %}
-                        (starts {{ event.start.strftime("%d/%m/%Y") }})
-                    {% elif event.start < time.datetime.today() < event.end %}
-                        is on! (ends {{ event.end.strftime("%d/%m/%Y") }})
-                    {% else %}
-                        (ended {{ event.end.strftime("%d/%m/%Y") }})
-                    {% endif %}
+            <div class="gjms-list-row {% if loop.index % 2 == 0 %}even{% else %}odd{% endif %}">
+                <span class="gjms-event-data">
+                    <span class="bold">{{ event.name }}</span>
+                    <span class="gjms-date">
+                        {% if event.start > time.datetime.today() %}
+                            (starts {{ event.start.strftime("%d/%m/%Y") }})
+                        {% elif event.start < time.datetime.today() < event.end %}
+                            is on! (ends {{ event.end.strftime("%d/%m/%Y") }})
+                        {% else %}
+                            (ended {{ event.end.strftime("%d/%m/%Y") }})
+                        {% endif %}
+                    </span>
+
+                    <span class="gjms-tool-options">
+                        <a href="/jam/{{ event.slug }}" title="View event"><i class="fa fa-code"></i></a>
+                        <a href="/jam/{{ event.slug }}/edit/" title="Edit"><i class="fa fa-wrench"></i></a>
+                    </span>
                 </span>
-            </p>
+            </div>
         {% endif %}
     {% endfor %}
+    </div>
 {%- endmacro %}
 
 {% macro gjms_error(text) -%}
