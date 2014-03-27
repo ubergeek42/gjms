@@ -1,3 +1,5 @@
+{% from "layout/macros.html" import gjms_events with context %}
+
 <!--
 
     Author: Richard Blechinger (http://twitter.com/F0lis/)
@@ -29,6 +31,15 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,700|Oswald:700' rel='stylesheet' type='text/css'>
     <link href="../../media/css/frontend.css" rel="stylesheet">
 
+    <!-- IE9+ gradient fix. -->
+    <!--[if gte IE 9]>
+      <style type="text/css">
+        .gradient {
+           filter: none;
+        }
+      </style>
+    <![endif]-->
+
     <!-- Javascript including the master control program (mcp.js) -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
@@ -38,5 +49,22 @@
     <title>{% block gjms_title %}{% endblock %} - {{ config.get("gjms", "label") }}</title>
 </head>
     <body>
+        <section id="gjms-top">
+            <h1 id="gjms-jam-label">{{ config.get("gjms", "label") }}</h1>
+            <h2 id="gjms-next-up">
+                {% for event in system.events %}
+                    {% if loop.index == 1 %}
+                        Next event: {{ event.name }}
+                    {% endif %}
+                {% endfor %}
+            </h2>
+        </section>
+
+        <section id="gjms-center">
+            <h2>Welcome to the {{ config.get("gjms", "label") }}!</h2>
+            <p>This is an example frontend page we setup for you. You can keep it this way, or build your own. Whatever fits your needs!</p>
+            <p>We also brought you a kitten!</p>
+            <img src="http://placekitten.com/g/400/200/" alt="Kitten" title="Fluffy, ain't it?">
+        </section>
     </body>
 </html>
