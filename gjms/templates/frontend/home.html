@@ -1,0 +1,29 @@
+{% extends "frontend/base.html" %}
+
+{% block gjms_title %}Home{% endblock %}
+{% block gjms_body %}
+    <section id="gjms-center">
+        <article class="gjms-column">
+            <h1>Hello, World!</h1>
+            <p>This is an example frontend page we setup for you. You can keep it this way, or build your own. Whatever fits your needs!</p>
+            <p>We also brought you a kitten, but it's really shy and hides at the end of the page.</p>
+            <p>You might see it as a reward for reading through the text here!</p>
+        </article>
+
+        <article class="gjms-column">
+            <h1>Be creative!</h1>
+            <p>We have provided a few macros, modules and CSS classes for you to try. These try to make setting up a cool game jam page as painless as possible.</p>
+            <p>But if you're not happy with them, you can just look through the templates folder and edit them to your liking.</p>
+            <p>Of course you can also write a new page form scratch. We don't mind.</p>
+        </article>
+
+        <article class="gjms-column">
+            <h1>Behind the scenes!</h1>
+            <p>Another big feature of GJMS is the backend. You can access it <a href="gjms/">here.</a></p>
+            <p>The standard username <span class="bold">and</span> password are <span class="bold">root.</span> You'll be asked to change the password after the first login.</p>
+            <p>You can then create a new administrative user in the backend, though you can not delete the root user for security purposes.</p>
+        </article>
+
+        <img id="kitten" src="http://placekitten.com/g/400/200/" alt="Kitten" title="Fluffy, ain't it?">
+    </section>
+{% endblock %}

@@ -130,6 +130,12 @@ table {
  *
  *      Provides styles for a basic GJMS powered site.
  */
+.bold {
+  font-weight: 700;
+}
+body {
+  text-align: center;
+}
 h1,
 h2,
 h3 {
@@ -158,9 +164,11 @@ img {
   width: 95%;
   height: auto;
   margin-top: 1.2rem;
-  margin-bottom: 1.2rem;
   border: 5px solid white;
   box-shadow: 0 0 5px 1px #444444;
+}
+#kitten {
+  margin-top: 5rem;
 }
 #gjms-top {
   height: 13rem;
@@ -197,7 +205,34 @@ img {
   text-shadow: 0px 2px 2px #000000;
   color: #ffffff;
 }
-#gjms-center {
-  width: 92.5%;
-  padding: 5% 3.75%;
+@media screen and (max-width: 479px) {
+  #gjms-center {
+    width: 92.5%;
+    padding: 5% 3.75%;
+  }
+}
+@media screen and (min-width: 480px) {
+  #gjms-center {
+    width: 100%;
+    padding: 2% 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  .gjms-column:not(:first-child) {
+    margin-top: 2rem;
+  }
+}
+@media screen and (min-width: 481px) {
+  .gjms-column {
+    width: 29%;
+    display: inline-block;
+    float: left;
+    margin: 0 2%;
+  }
+  .gjms-column:not(:first-child) {
+    margin-top: 0rem;
+  }
+}
+.gjms-column p {
+  text-align: left;
 }

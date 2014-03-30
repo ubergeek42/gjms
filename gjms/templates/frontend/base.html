@@ -60,11 +60,6 @@
             </h2>
         </section>
 
-        <section id="gjms-center">
-            <h2>Welcome to the {{ config.get("gjms", "label") }}!</h2>
-            <p>This is an example frontend page we setup for you. You can keep it this way, or build your own. Whatever fits your needs!</p>
-            <p>We also brought you a kitten!</p>
-            <img src="http://placekitten.com/g/400/200/" alt="Kitten" title="Fluffy, ain't it?">
-        </section>
+        {% block gjms_body %}{% endblock %}
     </body>
 </html>

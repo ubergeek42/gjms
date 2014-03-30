@@ -41,6 +41,11 @@ label[for="csrf_token"] { display: none; }
 .gjms-list-row.odd  { background: @gjms-white; }
 
 #gjms-header { width: 100%; background: @gjms-blue; }
+.gjms-menu {
+    @media screen and (max-width: 727px) {
+        text-align: center !important;
+    }
+}
 .gjms-menu-entry {
     padding: 0.5rem 1rem;
     display: inline-block;
@@ -90,6 +95,12 @@ label[for="csrf_token"] { display: none; }
 .gjms-label { font-size: 80%; width: 212px; }
 .gjms-required, .gjms-field-error { color: red; }
 .gjms-field-error { float: right; }
+
+.gjms-menu-text {
+    @media screen and (max-width: 727px) {
+        display: none;
+    }
+}
 
 .config-form { input[type="submit"] { margin-top: 1.9rem; }}
 

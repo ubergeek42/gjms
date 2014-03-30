@@ -39,8 +39,6 @@
             {{ gjms_field(form.host) }}
             {{ gjms_field(form.port) }}
             {{ form.hidden_tag() }}
-            <input type="submit" value="Save">
-
         </div>
 
         <div class="gjms-form-container">
@@ -48,6 +46,8 @@
             {{ gjms_field(form.user) }}
             {{ gjms_field(form.password) }}
             {{ gjms_field(form.db) }}
+
+            <input type="submit" value="Save">
         </div>
     </form>
 {% endblock %}

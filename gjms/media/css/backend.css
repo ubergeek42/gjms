@@ -233,6 +233,11 @@ label[for="csrf_token"] {
   width: 100%;
   background: #0070ba;
 }
+@media screen and (max-width: 727px) {
+  .gjms-menu {
+    text-align: center !important;
+  }
+}
 .gjms-menu-entry {
   padding: 0.5rem 1rem;
   display: inline-block;
@@ -310,6 +315,11 @@ label[for="csrf_token"] {
 }
 .gjms-field-error {
   float: right;
+}
+@media screen and (max-width: 727px) {
+  .gjms-menu-text {
+    display: none;
+  }
 }
 .config-form input[type="submit"] {
   margin-top: 1.9rem;

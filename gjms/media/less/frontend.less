@@ -11,7 +11,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 @import "variables.less";
 
+.bold { font-weight: 700; }
 
+
+body { text-align: center; }
 h1, h2, h3 {
     font-family: Roboto;
     font-weight: 700;
@@ -34,18 +37,19 @@ p {
     color: @gjms-grey;
 }
 
+
 img {
     width: 95%;
     height: auto;
 
     margin-top: 1.2rem;
-    margin-bottom: 1.2rem;
 
     border: 5px solid white;
 
     box-shadow: 0 0 5px 1px @gjms-grey;
 }
 
+#kitten { margin-top: 5rem; }
 #gjms-top {
     height: 13rem;
     width: 100%;
@@ -84,7 +88,31 @@ img {
 }
 
 #gjms-center {
-    width: 92.5%;
+    @media screen and (max-width: 479px) {
+        width: 92.5%;
+        padding: 5% 3.75%;
+    }
 
-    padding: 5% 3.75%;
+    @media screen and (min-width: 480px) {
+        width: 100%;
+        padding: 2% 0;
+    }
+}
+
+.gjms-column {
+    @media screen and (max-width: 480px) {
+        &:not(:first-child) { margin-top: 2rem; }
+    }
+
+    @media screen and (min-width: 481px) {
+        &:not(:first-child) { margin-top: 0rem; }
+
+        width: 29%;
+        display: inline-block;
+        float: left;
+
+        margin: 0 2%;
+    }
+
+    p { text-align: left; }
 }
