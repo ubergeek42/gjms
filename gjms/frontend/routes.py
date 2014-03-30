@@ -15,7 +15,7 @@ import gjms.core.system
 import gjms.core.users
 import gjms.core.events
 import gjms.core.games
-import gjms.core.platforms DON GIOVA
+import gjms.core.platforms
 import gjms.core.ratings
 
 import gjms.util.report
