@@ -2,6 +2,7 @@ Elixir==0.7.1
 Flask==0.10.1
 Flask-Login==0.2.10
 Flask-WTF==0.9.4
+Hamlish-Jinja==0.3.2
 Jinja2==2.7.2
 MarkupSafe==0.19
 MySQL-python==1.2.5
